@@ -24,10 +24,15 @@ public class DataParser {
         String[] firstRow = columns[1].split("\\|");
         int columnCount = firstRow.length;
         datasheetsRaw = datasheetsRaw.replaceAll("\\r\\n", "");
+        System.out.println(datasheetsRaw);
         String[] datasheets = datasheetsRaw.split("\\|");
         List<String> datasheetsParsed = new ArrayList<>(Arrays.asList(datasheets));
         for (int i = columnCount; i > 0; i--) {
             datasheetsParsed.remove(i);
+        }
+        for (String string : datasheetsParsed)
+        {
+            System.out.println(string);
         }
         return datasheetsParsed;
     }
@@ -41,9 +46,15 @@ public class DataParser {
     }
 
     public String[] getFileColumn(FileConstants file) throws IOException {
-        String datasheetsRaw = Files.readString(Paths.get(FileConstants.DATA_ROOT.value + file.value));
-        String[] columns = datasheetsRaw.split("\\r\\n");
+        String fileRaw = Files.readString(Paths.get(FileConstants.DATA_ROOT.value + file.value));
+        String[] columns = fileRaw.split("\\r\\n");
         return columns[0].split("\\|");
     }
 
+    public int getFileColumnQuantity(FileConstants file) throws IOException {
+        String fileRaw = Files.readString(Paths.get(FileConstants.DATA_ROOT.value + file.value));
+        String[] columns = fileRaw.split("\\r\\n");
+        String[] columnNumber = columns[0].split("\\|");
+        return columnNumber.length;
+    }
 }
