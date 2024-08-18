@@ -93,7 +93,7 @@ public class DatabaseUpdater {
         }
     }
 
-    public void populateData2() throws IOException {
+    public void populateData() throws IOException {
         List<FileConstants> files = Arrays.asList(FileConstants.values());
         List<String> tableNames = new ArrayList<>();
         for (FileConstants file : files) {
@@ -122,33 +122,6 @@ public class DatabaseUpdater {
         }
 
     }
-
-//    public void populateData() throws IOException {
-//        List<FileConstants> files = Arrays.asList(FileConstants.values());
-//        for (FileConstants file : files) {
-//            if (file != FileConstants.DATA_ROOT) {
-//                String[] columns = dataParser.getFileColumn(file);
-//                String[] rows = dataParser.parseData(file).toArray(new String[0]);
-//                String dataString = generateDataString(file);
-//                try (var conn = DriverManager.getConnection(URL);
-//                     var pstmt = conn.prepareStatement(dataString)) {
-//                    for(int i = 0; i < columns.length; i++){
-//                        int iteration = 1;
-//                        for (int j = 0; j < rows.length; j++) {
-//                            if (j == i || j == i + columns.length * iteration) {
-//                                pstmt.setString(i + 1, rows[j]);
-//                                pstmt.executeUpdate();
-//                                iteration++;
-//                            }
-//                        }
-//
-//                    }
-//                } catch (SQLException e) {
-//                    System.err.println(e.getMessage());
-//                }
-//            }
-//        }
-//    }
 
     public void populateUpdateTime() {
         String sql = "INSERT INTO LastUpdated(lastUpdate) VALUES(?)";
