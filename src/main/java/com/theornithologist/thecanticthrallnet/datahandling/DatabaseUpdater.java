@@ -1,6 +1,12 @@
 package com.theornithologist.thecanticthrallnet.datahandling;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
+
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -12,6 +18,7 @@ public class DatabaseUpdater {
 
     DataParser dataParser = new DataParser();
 
+    private static final CSVFormat FORMAT = CSVFormat.Builder.create().setDelimiter('|').setHeader().setSkipHeaderRecord(true).build();
     private static final String URL = "jdbc:sqlite:src/main/resources/com/theornithologist/thecanticthrallnet/data/munitorum.db";
 
     public DatabaseUpdater() throws SQLException {
@@ -86,32 +93,62 @@ public class DatabaseUpdater {
         }
     }
 
-    public void populateData() throws IOException {
+    public void populateData2() throws IOException {
         List<FileConstants> files = Arrays.asList(FileConstants.values());
+        List<String> tableNames = new ArrayList<>();
+        for (FileConstants file : files) {
+            String[] fileName = file.value.split("\\.");
+            String tableName = fileName[0];
+            tableNames.add(tableName);
+        }
         for (FileConstants file : files) {
             if (file != FileConstants.DATA_ROOT) {
-                String[] columns = dataParser.getFileColumn(file);
-                String[] rows = dataParser.parseData(file).toArray(new String[0]);
-                String dataString = generateDataString(file);
-                try (var conn = DriverManager.getConnection(URL);
-                     var pstmt = conn.prepareStatement(dataString)) {
-                    for(int i = 0; i < columns.length; i++){
-                        int iteration = 1;
-                        for (int j = 0; j < rows.length; j++) {
-                            if (j == i || j == i + columns.length * iteration) {
-                                pstmt.setString(i + 1, rows[j]);
-                                pstmt.executeUpdate();
-                                iteration++;
+                Reader reader = Files.newBufferedReader(Paths.get(FileConstants.DATA_ROOT.value + file.value));
+                Iterable<CSVRecord> records = FORMAT.parse(reader);
+                String[] headers = dataParser.getFileColumn(file);
+                    try (var conn = DriverManager.getConnection(URL);
+                         var pstmt = conn.prepareStatement(generateDataString(file))) {
+                        for (CSVRecord record : records) {
+                            System.out.println(headers.length);
+                            for (int i = 0; i < headers.length; i++) {
+                                pstmt.setString(i+1, record.get(i));
                             }
+                            pstmt.execute();
                         }
-
+                    } catch (SQLException e) {
+                        System.err.println(e.getMessage());
                     }
-                } catch (SQLException e) {
-                    System.err.println(e.getMessage());
-                }
             }
         }
+
     }
+
+//    public void populateData() throws IOException {
+//        List<FileConstants> files = Arrays.asList(FileConstants.values());
+//        for (FileConstants file : files) {
+//            if (file != FileConstants.DATA_ROOT) {
+//                String[] columns = dataParser.getFileColumn(file);
+//                String[] rows = dataParser.parseData(file).toArray(new String[0]);
+//                String dataString = generateDataString(file);
+//                try (var conn = DriverManager.getConnection(URL);
+//                     var pstmt = conn.prepareStatement(dataString)) {
+//                    for(int i = 0; i < columns.length; i++){
+//                        int iteration = 1;
+//                        for (int j = 0; j < rows.length; j++) {
+//                            if (j == i || j == i + columns.length * iteration) {
+//                                pstmt.setString(i + 1, rows[j]);
+//                                pstmt.executeUpdate();
+//                                iteration++;
+//                            }
+//                        }
+//
+//                    }
+//                } catch (SQLException e) {
+//                    System.err.println(e.getMessage());
+//                }
+//            }
+//        }
+//    }
 
     public void populateUpdateTime() {
         String sql = "INSERT INTO LastUpdated(lastUpdate) VALUES(?)";

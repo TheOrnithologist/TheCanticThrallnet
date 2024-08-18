@@ -21,14 +21,11 @@ public class HelloApplication extends Application {
 
         DataParser dataParser = new DataParser();
         DatabaseUpdater databaseUpdater = new DatabaseUpdater();
+        databaseUpdater.fileUpdate();
         databaseUpdater.generateDB();
         databaseUpdater.initializeTable();
-        databaseUpdater.populateData();
-//        dataParser.parseData(FileConstants.DATASHEETS_FILE);
-//        databaseUpdater.populateFactions();
-//        databaseUpdater.populateUpdateTime();
-//        databaseUpdater.fileUpdate();
-
+        dataParser.trimCSV();
+        databaseUpdater.populateData2();
     }
 
     public static void main(String[] args) {
