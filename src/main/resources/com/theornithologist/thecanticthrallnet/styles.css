@@ -1,0 +1,13 @@
+@font-face {
+    -font-family: 'Cloister Black';
+    src: url('file:src/main/resources/com/theornithologist/thecanticthrallnet/font/CloisterBlack.ttf');
+}
+
+.title {
+    -fx-font-family: 'Cloister Black';
+    -fx-font-size: 96;
+}
+
+.large_button {
+    -fx-font-size: 24;
+}

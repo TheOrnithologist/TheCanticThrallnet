@@ -7,4 +7,6 @@ module com.theornithologist.thecanticthrallnet {
 
     opens com.theornithologist.thecanticthrallnet to javafx.fxml;
     exports com.theornithologist.thecanticthrallnet;
+    exports com.theornithologist.thecanticthrallnet.controllers;
+    opens com.theornithologist.thecanticthrallnet.controllers to javafx.fxml;
 }
