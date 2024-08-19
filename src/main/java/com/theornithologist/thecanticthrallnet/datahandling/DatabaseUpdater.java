@@ -46,7 +46,6 @@ public class DatabaseUpdater {
             try (var conn = DriverManager.getConnection(URL)) {
                 var stmt = conn.createStatement();
                 stmt.execute(table);
-                System.out.println("table creation success");
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -109,7 +108,6 @@ public class DatabaseUpdater {
                     try (var conn = DriverManager.getConnection(URL);
                          var pstmt = conn.prepareStatement(generateDataString(file))) {
                         for (CSVRecord record : records) {
-                            System.out.println(headers.length);
                             for (int i = 0; i < headers.length; i++) {
                                 pstmt.setString(i+1, record.get(i));
                             }
