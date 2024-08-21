@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.theornithologist.thecanticthrallnet.controllers.HomeController"
+           style="-fx-background-color: slategray; -fx-background-size: cover;">
+    <ImageView>
+        <Image url="@icons/CanticThrallnetFull.png"/>
+    </ImageView>
+    <BorderPane>
+        <top>
+            <HBox fx:id="topBar" alignment="TOP_CENTER">
+                <TitledPane text="IMPERIUM" styleClass="pane_header" expanded="false" alignment="CENTER">
+                    <VBox>
+                        <Button text="Adeptus Custodes" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Adeptus Mechanicus" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Adeptus Sororitas" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Adeptus Titanicus" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Agents of the Imperium" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Astra Militarum" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Grey Knights" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Imperial Knights" styleClass="large_button" alignment="CENTER"/>
+                        <TitledPane text="Space Marines" styleClass="large_button" expanded="false" alignment="CENTER">
+                            <VBox GridPane.columnIndex="0">
+                                <Button text="Black Templars" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Blood Angels" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Dark Angels" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Deathwatch" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Imperial Fists" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Iron Hands" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Raven Guard" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Salamanders" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Space Marines" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Space Wolves" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Ultramarines" styleClass="large_button" alignment="CENTER"/>
+                            </VBox>
+                        </TitledPane>
+                    </VBox>
+
+                </TitledPane>
+                <TitledPane text="CHAOS" styleClass="pane_header" expanded="false" alignment="CENTER">
+                    <VBox>
+                        <Button text="Chaos Demons" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Chaos Knights" styleClass="large_button" alignment="CENTER"/>
+                        <TitledPane text="Chaos Space Marines" styleClass="large_button" alignment="CENTER" expanded="false">
+                            <VBox>
+                                <Button text="Emperor's Children" styleClass="large_button" alignment="CENTER"/>
+                                <Button text="Chaos Space Marines" styleClass="large_button" alignment="CENTER"/>
+                            </VBox>
+                        </TitledPane>
+                        <Button text="Deathguard" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Thousand Sons" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="World Eaters" styleClass="large_button" alignment="CENTER"/>
+                    </VBox>
+                </TitledPane>
+                <TitledPane text="XENOS" styleClass="pane_header" expanded="false" alignment="CENTER">
+                    <VBox>
+                        <Button text="Aeldari" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Drukhari" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Genestealers" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Leagues of Votann" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Necrons" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Orks" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="T'au Empire" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Tyranids" styleClass="large_button" alignment="CENTER"/>
+                    </VBox>
+                </TitledPane>
+            </HBox>
+        </top>
+        <bottom>
+            <VBox alignment="CENTER">
+                <ProgressBar fx:id="progressBar" progress="0.0" prefWidth="300" visible="false"/>
+                <Button fx:id="updateButton"
+                        text="Check for Update"
+                        textAlignment="CENTER"
+                        styleClass="large_button"
+                        BorderPane.alignment="BASELINE_CENTER"
+                        onAction="#onUpdate"/>
+            </VBox>
+        </bottom>
+    </BorderPane>
+</StackPane>
+
+

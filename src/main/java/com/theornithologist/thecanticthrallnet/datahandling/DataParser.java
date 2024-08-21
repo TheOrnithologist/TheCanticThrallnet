@@ -27,7 +27,6 @@ public class DataParser {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         String modifiedLine = line.replaceAll("\\|$", "");
-                        System.out.println(line);
                         writer.write(modifiedLine);
                         writer.newLine();
                     }
@@ -43,7 +42,7 @@ public class DataParser {
 
     public String parseLastUpdated() throws IOException {
         String lastUpdateRaw = Files.readString(Paths.get(FileConstants.DATA_ROOT.value + FileConstants.UPDATE_FILE.value));
-        lastUpdateRaw = lastUpdateRaw.replaceAll("\r\n","");
+        lastUpdateRaw = lastUpdateRaw.replaceAll("\r\n", "|");
         lastUpdateRaw = lastUpdateRaw.replaceAll("\\s","T");
         String[] lastUpdate = lastUpdateRaw.split("\\|");
         return lastUpdate[1];
