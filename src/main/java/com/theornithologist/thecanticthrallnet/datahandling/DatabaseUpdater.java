@@ -35,17 +35,19 @@ public class DatabaseUpdater {
     }
 
     public void initializeTable() throws IOException {
-        List<FileConstants> files = Arrays.asList(FileConstants.values());
+        FileConstants[] files = FileConstants.values();
         List<String> tableStrings = new ArrayList<>();
         for (FileConstants file : files) {
             if (file != FileConstants.DATA_ROOT) {
                 tableStrings.add(generateTableString(file));
+                System.out.println(generateTableString(file));
             }
         }
         for (String table : tableStrings) {
             try (var conn = DriverManager.getConnection(URL)) {
                 var stmt = conn.createStatement();
                 stmt.execute(table);
+                System.out.println("table added");
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -53,7 +55,7 @@ public class DatabaseUpdater {
     }
 
     public boolean updateRequired() throws IOException {
-        var sql = "SELECT lastUpdate FROM LastUpdated";
+        var sql = "SELECT last_update FROM Last_update";
         LocalDateTime currentDate = LocalDateTime.of(2000,1,1,1,1);
         try (var conn = DriverManager.getConnection(URL);
              var stmt = conn.createStatement();
@@ -70,25 +72,20 @@ public class DatabaseUpdater {
         }
     }
 
-    public boolean fileUpdate() throws IOException {
+    public void fileUpdate() throws IOException {
         dataParser.downloadData(URLConstants.UPDATE_URL.value, FileConstants.UPDATE_FILE.value);
-        if (updateRequired()) {
-            List<FileConstants> fileConstants = Arrays.asList(FileConstants.values());
-            List<FileConstants> fileConstantsNoRoot = new ArrayList<>();
-            for (FileConstants constant : fileConstants) {
-                if (!constant.equals(FileConstants.DATA_ROOT)) {
-                    fileConstantsNoRoot.add(constant);
-                }
+        List<FileConstants> fileConstants = Arrays.asList(FileConstants.values());
+        List<FileConstants> fileConstantsNoRoot = new ArrayList<>();
+        for (FileConstants constant : fileConstants) {
+            if (!constant.equals(FileConstants.DATA_ROOT)) {
+                fileConstantsNoRoot.add(constant);
             }
-            List<URLConstants> urlConstants = Arrays.asList(URLConstants.values());
-            URLConstants[] urlArray = urlConstants.toArray(new URLConstants[0]);
-            FileConstants[] fileArray = fileConstantsNoRoot.toArray(new FileConstants[0]);
-            for (int i = 0; i < urlConstants.size() - 1; i++) {
-                dataParser.downloadData(urlArray[i].value, fileArray[i].value);
-            }
-            return true;
-        } else {
-            return false;
+        }
+        List<URLConstants> urlConstants = Arrays.asList(URLConstants.values());
+        URLConstants[] urlArray = urlConstants.toArray(new URLConstants[0]);
+        FileConstants[] fileArray = fileConstantsNoRoot.toArray(new FileConstants[0]);
+        for (int i = 0; i < urlConstants.size() - 1; i++) {
+            dataParser.downloadData(urlArray[i].value, fileArray[i].value);
         }
     }
 
@@ -101,7 +98,7 @@ public class DatabaseUpdater {
             tableNames.add(tableName);
         }
         for (FileConstants file : files) {
-            if (file != FileConstants.DATA_ROOT) {
+            if (file != FileConstants.DATA_ROOT && file != FileConstants.UPDATE_FILE) {
                 Reader reader = Files.newBufferedReader(Paths.get(FileConstants.DATA_ROOT.value + file.value));
                 Iterable<CSVRecord> records = FORMAT.parse(reader);
                 String[] headers = dataParser.getFileColumn(file);
@@ -117,17 +114,17 @@ public class DatabaseUpdater {
                         System.err.println(e.getMessage());
                     }
             }
+            System.out.println("table updated");
         }
 
     }
 
     public void populateUpdateTime() {
-        String sql = "INSERT INTO LastUpdated(lastUpdate) VALUES(?)";
+        String sql = "INSERT INTO Last_update(last_update) VALUES(?)";
         try (var conn = DriverManager.getConnection(URL);
              var pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, dataParser.parseLastUpdated());
             pstmt.executeUpdate();
-            System.out.println(dataParser.parseLastUpdated());
         } catch (SQLException | IOException e) {
             e.getMessage();
         }

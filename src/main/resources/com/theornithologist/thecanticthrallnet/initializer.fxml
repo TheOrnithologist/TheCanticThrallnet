@@ -21,7 +21,7 @@
   <ProgressBar fx:id="progressBar" progress="0.0" prefWidth="300" visible="false"/>
   <BorderPane>
     <top>
-      <Label text="Cantic Thrallnet" textFill="white" styleClass="title" BorderPane.alignment="CENTER"/>
+      <Label text="Cantic Thrallnet" textFill="white" styleClass="header" BorderPane.alignment="CENTER"/>
     </top>
     <bottom>
       <Button fx:id="intializeButton" text="Prime Databanks" textAlignment="CENTER" styleClass="large_button" BorderPane.alignment="CENTER" onAction="#onButtonClick"/>
