@@ -25,21 +25,17 @@ public class CanticThrallnet extends Application {
         } else {
             sceneRoot = "initializer.fxml";
         }
-        FXMLLoader fxmlLoader = new FXMLLoader(CanticThrallnet.class.getResource(sceneRoot));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneRoot));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
         URL url = getClass().getResource("icons/CanticThrallnet256.png");
         Image icon = new Image(String.valueOf(url));
         DataParser dataParser = new DataParser();
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(CanticThrallnet.class.getResource("styles.css").toExternalForm());
         stage.getIcons().add(icon);
         scene.setFill(Color.SLATEGRAY);
         stage.setTitle("Cantic Thrallnet");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void setSceneRoot(String sceneRoot) {
-        this.sceneRoot = sceneRoot;
     }
 
     public static void main(String[] args) {
