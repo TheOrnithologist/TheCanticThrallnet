@@ -16,7 +16,7 @@
                 <TitledPane text="IMPERIUM" styleClass="pane_header" expanded="false" alignment="CENTER">
                     <VBox>
                         <Button text="Adeptus Custodes" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Adeptus Mechanicus" styleClass="large_button" alignment="CENTER"/>
+                        <Button text="Adeptus Mechanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button text="Adeptus Sororitas" styleClass="large_button" alignment="CENTER"/>
                         <Button text="Adeptus Titanicus" styleClass="large_button" alignment="CENTER"/>
                         <Button text="Agents of the Imperium" styleClass="large_button" alignment="CENTER"/>

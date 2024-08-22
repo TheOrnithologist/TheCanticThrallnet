@@ -18,3 +18,8 @@
     -fx-font-size: 24;
     -fx-pref-width: 275;
 }
+
+.faction_header {
+    -fx-font-family: 'Cloister Black';
+    -fx-font-size: 40
+}
