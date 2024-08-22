@@ -20,6 +20,7 @@ public class HomeController {
     private HBox topBar;
 
     SceneController sceneController = new SceneController();
+    FactionController factionController = new FactionController();
 
     public void onUpdate() throws SQLException, IOException {
         DatabaseUpdater databaseUpdater = new DatabaseUpdater();
