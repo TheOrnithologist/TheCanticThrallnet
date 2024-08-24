@@ -27,6 +27,9 @@
                 </VBox>
             </center>
         </BorderPane>
-        <TextArea fx:id="armyRuleBox"/>
+        <VBox visible="true">
+            <Label fx:id="armyRuleName" styleClass="pane_header"/>
+            <TextArea fx:id="armyRuleBox" wrapText="true"/>
+        </VBox>
     </StackPane>
 </VBox>

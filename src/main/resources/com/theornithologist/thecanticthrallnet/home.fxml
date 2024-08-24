@@ -15,14 +15,14 @@
             <HBox fx:id="topBar" alignment="TOP_CENTER">
                 <TitledPane text="IMPERIUM" styleClass="pane_header" expanded="false" alignment="CENTER">
                     <VBox>
-                        <Button text="Adeptus Custodes" styleClass="large_button" alignment="CENTER"/>
+                        <Button fx:id="AC" text="Adeptus Custodes" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="AdM" text="Adeptus Mechanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button text="Adeptus Sororitas" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Adeptus Titanicus" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Agents of the Imperium" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Astra Militarum" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Grey Knights" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Imperial Knights" styleClass="large_button" alignment="CENTER"/>
+                        <Button fx:id="AS" text="Adeptus Sororitas" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="TL" text="Adeptus Titanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="AoI" text="Agents of the Imperium" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="AM" text="Astra Militarum" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="GK" text="Grey Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="QI" text="Imperial Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <TitledPane text="Space Marines" styleClass="large_button" expanded="false" alignment="CENTER">
                             <VBox GridPane.columnIndex="0">
                                 <Button text="Black Templars" styleClass="large_button" alignment="CENTER"/>
@@ -43,29 +43,29 @@
                 </TitledPane>
                 <TitledPane text="CHAOS" styleClass="pane_header" expanded="false" alignment="CENTER">
                     <VBox>
-                        <Button text="Chaos Demons" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Chaos Knights" styleClass="large_button" alignment="CENTER"/>
+                        <Button fx:id="CD" text="Chaos Demons" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="QT" text="Chaos Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <TitledPane text="Chaos Space Marines" styleClass="large_button" alignment="CENTER" expanded="false">
                             <VBox>
                                 <Button text="Emperor's Children" styleClass="large_button" alignment="CENTER"/>
                                 <Button text="Chaos Space Marines" styleClass="large_button" alignment="CENTER"/>
                             </VBox>
                         </TitledPane>
-                        <Button text="Deathguard" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Thousand Sons" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="World Eaters" styleClass="large_button" alignment="CENTER"/>
+                        <Button fx:id="DG" text="Deathguard" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="TS" text="Thousand Sons" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="WE" text="World Eaters" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                     </VBox>
                 </TitledPane>
                 <TitledPane text="XENOS" styleClass="pane_header" expanded="false" alignment="CENTER">
                     <VBox>
-                        <Button text="Aeldari" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Drukhari" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Genestealers" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Leagues of Votann" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Necrons" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Orks" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="T'au Empire" styleClass="large_button" alignment="CENTER"/>
-                        <Button text="Tyranids" styleClass="large_button" alignment="CENTER"/>
+                        <Button fx:id="AE" text="Aeldari" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="DRU" text="Drukhari" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="GS" text="Genestealers" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="LoV" text="Leagues of Votann" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="NEC" text="Necrons" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="ORK" text="Orks" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="TAU" text="T'au Empire" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="TYR" text="Tyranids" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                     </VBox>
                 </TitledPane>
             </HBox>

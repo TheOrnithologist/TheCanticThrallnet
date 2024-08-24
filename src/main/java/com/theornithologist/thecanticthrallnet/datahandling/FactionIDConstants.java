@@ -1,7 +1,7 @@
 package com.theornithologist.thecanticthrallnet.datahandling;
 
 public enum FactionIDConstants {
-    AOI("Agents of the Imperium"),
+    AoI("Agents of the Imperium"),
     AM("Astra Militaurm"),
     GC("Genestealer Cults"),
     NEC("Necrons"),
@@ -30,5 +30,14 @@ public enum FactionIDConstants {
 
     FactionIDConstants(String value) {
         this.value = value;
+    }
+
+    public static FactionIDConstants fromKey(String key) {
+        for (FactionIDConstants faction : values()) {
+            if (faction.name().equals(key)) {
+                return faction;
+            }
+        }
+        return null;
     }
 }
