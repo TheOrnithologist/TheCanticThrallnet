@@ -3,28 +3,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theornithologist.thecanticthrallnet.controllers.FactionController">
     <VBox alignment="CENTER">
         <StackPane>
             <Button fx:id="backButton" text="Back" StackPane.alignment="TOP_LEFT" onAction="#backButton"/>
-            <Label text="Faction" StackPane.alignment="CENTER" styleClass="faction_header"/>
+            <Label fx:id="factionLabel" text="Faction" StackPane.alignment="CENTER" styleClass="faction_header"/>
         </StackPane>
         <HBox alignment="CENTER">
-            <Button text="test" />
-            <Button text="test" />
-            <Button text="test" />
+            <Button fx:id="armyRuleButton" text="Army Rule" prefWidth="333"/>
+            <Button fx:id="detachmentButton" text="Detachments" prefWidth="333"/>
+            <Button fx:id="datasheetButton" text="Datasheets" prefWidth="333"/>
         </HBox>
     </VBox>
-    <BorderPane>
-        <left>
-            <ListView />
-        </left>
-        <center>
-            <VBox>
-                <TextArea />
-                <TextArea />
-            </VBox>
-        </center>
-    </BorderPane>
+    <StackPane>
+        <BorderPane visible="false">
+            <left>
+                <ListView fx:id="listView"/>
+            </left>
+            <center>
+                <VBox>
+                    <TextArea />
+                    <TextArea />
+                </VBox>
+            </center>
+        </BorderPane>
+        <VBox visible="true">
+            <Label fx:id="armyRuleName" styleClass="pane_header"/>
+            <TextArea fx:id="armyRuleBox" wrapText="true"/>
+        </VBox>
+    </StackPane>
 </VBox>

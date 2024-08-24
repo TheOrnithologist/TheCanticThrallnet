@@ -4,9 +4,11 @@ import com.theornithologist.thecanticthrallnet.datahandling.DataParser;
 import com.theornithologist.thecanticthrallnet.datahandling.DatabaseUpdater;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,6 +20,9 @@ public class HomeController {
     private ProgressBar progressBar;
     @FXML
     private HBox topBar;
+
+    Stage stage;
+    Scene scene;
 
     SceneController sceneController = new SceneController();
 
@@ -59,6 +64,7 @@ public class HomeController {
     }
 
     public void factionButton(ActionEvent e) throws IOException {
-        sceneController.setScene(e, "faction.fxml");
+        sceneController.factionSelect(e);
+        sceneController.buttonAction(e, "faction.fxml");
     }
 }

@@ -1,6 +1,5 @@
 package com.theornithologist.thecanticthrallnet;
 
-import com.theornithologist.thecanticthrallnet.datahandling.DataParser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,7 +28,6 @@ public class CanticThrallnet extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
         URL url = getClass().getResource("icons/CanticThrallnet256.png");
         Image icon = new Image(String.valueOf(url));
-        DataParser dataParser = new DataParser();
         scene.getStylesheets().add(CanticThrallnet.class.getResource("styles.css").toExternalForm());
         stage.getIcons().add(icon);
         scene.setFill(Color.SLATEGRAY);
