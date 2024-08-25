@@ -32,4 +32,40 @@ public class FactionQuery {
         return null;
     }
 
+    public ResultSet getDetachments(String faction) {
+        String sql = "SELECT name, legend, description, detachment FROM Detachment_abilities where faction_id ='" + faction + "'";
+        try {
+            var conn = DriverManager.getConnection(URL);
+            var stmt = conn.prepareStatement(sql);
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+        return null;
+    }
+
+    public ResultSet getStratagems(String detachment) {
+        String sql = "SELECT name, type, cp_cost, legend, turn, phase, description FROM Stratagems where detachment ='" + detachment +"'";
+        try {
+            var conn = DriverManager.getConnection(URL);
+            var stmt = conn.prepareStatement(sql);
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+        return null;
+    }
+
+    public ResultSet getEnhancements(String detachment) {
+        String sql = "SELECT name, legend, description, cost FROM Enhancements where detachment ='" + detachment +"'";
+        try {
+            var conn = DriverManager.getConnection(URL);
+            var stmt = conn.prepareStatement(sql);
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
+

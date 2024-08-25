@@ -1,7 +1,7 @@
 package com.theornithologist.thecanticthrallnet.controllers;
 
 import com.theornithologist.thecanticthrallnet.CanticThrallnet;
-import com.theornithologist.thecanticthrallnet.datahandling.ActiveFaction;
+import com.theornithologist.thecanticthrallnet.factionobjects.ActiveFaction;
 import com.theornithologist.thecanticthrallnet.datahandling.FactionIDConstants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
