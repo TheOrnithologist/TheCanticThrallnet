@@ -63,13 +63,10 @@ public class ActiveFaction {
 
     public void setDetachments() throws SQLException {
         String factionValue = FactionIDConstants.fromValue(factionName).toString();
-        ResultSet rs = factionQuery.getDetachments(factionValue);
+        ResultSet rs = factionQuery.getDetachment(factionValue);
         List<Detachment> detachmentList = new ArrayList<>();
         while(rs.next()) {
-            detachmentList.add(new Detachment(rs.getString("name"),
-                    rs.getString("legend"),
-                    rs.getString("description"),
-                    rs.getString("detachment")));
+            detachmentList.add(new Detachment(rs.getString("detachment")));
         }
         detachments = detachmentList;
     }

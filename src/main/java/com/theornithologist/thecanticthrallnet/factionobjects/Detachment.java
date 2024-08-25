@@ -1,5 +1,6 @@
 package com.theornithologist.thecanticthrallnet.factionobjects;
 
+import com.theornithologist.thecanticthrallnet.datahandling.FactionIDConstants;
 import com.theornithologist.thecanticthrallnet.datahandling.FactionQuery;
 
 import java.sql.ResultSet;
@@ -9,49 +10,21 @@ import java.util.List;
 
 public class Detachment {
 
-    String name;
-    String legend;
-    String description;
     List<Stratagem> stratagems;
     List<Enhancement> enhancements;
+    List<DetachmentAbility> abilities;
     FactionQuery factionQuery = new FactionQuery();
     String detachmentName;
 
-    public Detachment(String name, String legend, String description, String detachmentName) throws SQLException {
-        this.name = name;
-        this.legend = legend;
-        this.description = description;
+    public Detachment(String detachmentName) throws SQLException {
         this.detachmentName = detachmentName;
         setStratagems();
         setEnhancements();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        setAbilities();
     }
 
     public List<Stratagem> getStratagems() {
         return stratagems;
-    }
-
-    public String getLegend() {
-        return legend;
-    }
-
-    public void setLegend(String legend) {
-        this.legend = legend;
     }
 
     public List<Enhancement> getEnhancements() {
@@ -59,7 +32,7 @@ public class Detachment {
     }
 
     public void setEnhancements() throws SQLException {
-        ResultSet rs = factionQuery.getEnhancements(name);
+        ResultSet rs = factionQuery.getEnhancements(detachmentName);
         List<Enhancement> enhancementList = new ArrayList<>();
         while(rs.next()) {
             enhancementList.add(new Enhancement(rs.getString("name"),
@@ -71,7 +44,7 @@ public class Detachment {
     }
 
     public void setStratagems() throws SQLException {
-        ResultSet rs = factionQuery.getStratagems(name);
+        ResultSet rs = factionQuery.getStratagems(detachmentName);
         List<Stratagem> stratagemList = new ArrayList<>();
         while (rs.next()) {
             stratagemList.add(new Stratagem(rs.getString("name"),
@@ -83,6 +56,19 @@ public class Detachment {
                     rs.getString("description")));
         }
         stratagems = stratagemList;
+    }
+
+    public void setAbilities() throws SQLException {
+        ActiveFaction activeFaction = ActiveFaction.getInstance();
+        String factionValue = FactionIDConstants.fromValue(activeFaction.getFactionName()).toString();
+        ResultSet rs = factionQuery.getDetachmentAbilities(factionValue, detachmentName);
+        List<DetachmentAbility> detachmentAbilityList = new ArrayList<>();
+        while(rs.next()) {
+            detachmentAbilityList.add(new DetachmentAbility(rs.getString("name"),
+                    rs.getString("legend"),
+                    rs.getString("description")));
+        }
+        abilities = detachmentAbilityList;
     }
 
     @Override
