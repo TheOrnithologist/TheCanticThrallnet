@@ -1,5 +1,8 @@
 package com.theornithologist.thecanticthrallnet.datahandling;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum FactionIDConstants {
     AoI("Agents of the Imperium"),
     AM("Astra Militaurm"),
@@ -27,6 +30,7 @@ public enum FactionIDConstants {
     DRU("Drukhari");
 
     public final String value;
+    private static final Map<String, FactionIDConstants> BY_VALUE = new HashMap<>();
 
     FactionIDConstants(String value) {
         this.value = value;
@@ -39,5 +43,19 @@ public enum FactionIDConstants {
             }
         }
         return null;
+    }
+
+    static {
+        for (FactionIDConstants faction : values()) {
+            BY_VALUE.put(faction.getValue(), faction);
+        }
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public static FactionIDConstants fromValue(String value) {
+        return BY_VALUE.get(value);
     }
 }

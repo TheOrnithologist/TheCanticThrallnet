@@ -10,15 +10,16 @@
             <Label fx:id="factionLabel" text="Faction" StackPane.alignment="CENTER" styleClass="faction_header"/>
         </StackPane>
         <HBox alignment="CENTER">
-            <Button fx:id="armyRuleButton" text="Army Rule" prefWidth="333"/>
-            <Button fx:id="detachmentButton" text="Detachments" prefWidth="333"/>
+            <Button fx:id="armyRuleButton" text="Army Rule" prefWidth="333" onAction="#armyRuleButton"/>
+            <Button fx:id="detachmentButton" text="Detachments" prefWidth="333" onAction="#detachmentButton"/>
             <Button fx:id="datasheetButton" text="Datasheets" prefWidth="333"/>
         </HBox>
     </VBox>
     <StackPane>
-        <BorderPane visible="false">
+        <BorderPane fx:id="detachmentView" visible="false">
             <left>
-                <ListView fx:id="listView"/>
+                <ListView fx:id="detachmentList"/>
+<!--                <ListView fx:id="stratagemList"/>-->
             </left>
             <center>
                 <VBox>
@@ -27,7 +28,7 @@
                 </VBox>
             </center>
         </BorderPane>
-        <VBox visible="true">
+        <VBox fx:id="armyView" visible="true">
             <Label fx:id="armyRuleName" styleClass="pane_header"/>
             <TextArea fx:id="armyRuleBox" wrapText="true"/>
         </VBox>

@@ -60,7 +60,7 @@
                     <VBox>
                         <Button fx:id="AE" text="Aeldari" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="DRU" text="Drukhari" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="GS" text="Genestealers" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                        <Button fx:id="GC" text="Genestealers" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="LoV" text="Leagues of Votann" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="NEC" text="Necrons" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="ORK" text="Orks" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>

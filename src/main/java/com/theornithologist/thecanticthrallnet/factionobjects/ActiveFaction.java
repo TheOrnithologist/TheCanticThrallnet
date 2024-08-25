@@ -1,5 +1,11 @@
-package com.theornithologist.thecanticthrallnet.datahandling;
+package com.theornithologist.thecanticthrallnet.factionobjects;
 
+import com.theornithologist.thecanticthrallnet.datahandling.FactionIDConstants;
+import com.theornithologist.thecanticthrallnet.datahandling.FactionQuery;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +14,7 @@ public class ActiveFaction {
     String factionName;
     String armyRuleName;
     String armyRule;
+    List<Detachment> detachments;
     FactionQuery factionQuery = new FactionQuery();
     List<FactionIDConstants> factionIDConstants = Arrays.asList(FactionIDConstants.values());
 
@@ -27,9 +34,10 @@ public class ActiveFaction {
         return instance;
     }
 
-    public void updateData() {
+    public void updateData() throws SQLException {
         setArmyRuleName();
         setArmyRule();
+        setDetachments();
     }
 
 
@@ -53,6 +61,19 @@ public class ActiveFaction {
         this.armyRule = factionQuery.getArmyRule(factionID);
     }
 
+    public void setDetachments() throws SQLException {
+        String factionValue = FactionIDConstants.fromValue(factionName).toString();
+        ResultSet rs = factionQuery.getDetachments(factionValue);
+        List<Detachment> detachmentList = new ArrayList<>();
+        while(rs.next()) {
+            detachmentList.add(new Detachment(rs.getString("name"),
+                    rs.getString("legend"),
+                    rs.getString("description"),
+                    rs.getString("detachment")));
+        }
+        detachments = detachmentList;
+    }
+
     public String getFactionName() {
         return factionName;
     }
@@ -67,5 +88,9 @@ public class ActiveFaction {
 
     public String getArmyRuleName() {
         return armyRuleName;
+    }
+
+    public List<Detachment> getDetachments() {
+        return detachments;
     }
 }
