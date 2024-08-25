@@ -32,8 +32,20 @@ public class FactionQuery {
         return null;
     }
 
-    public ResultSet getDetachments(String faction) {
-        String sql = "SELECT name, legend, description, detachment FROM Detachment_abilities where faction_id ='" + faction + "'";
+    public ResultSet getDetachment(String faction) {
+        String sql = "SELECT DISTINCT detachment FROM Detachment_abilities where faction_id ='" + faction + "'";
+        try {
+            var conn = DriverManager.getConnection(URL);
+            var stmt = conn.prepareStatement(sql);
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+        return null;
+    }
+
+    public ResultSet getDetachmentAbilities(String faction, String detachmentName) {
+        String sql = "SELECT name, legend, description FROM Detachment_abilities where faction_id ='" + faction + "' AND detachment ='" + detachmentName +"'";
         try {
             var conn = DriverManager.getConnection(URL);
             var stmt = conn.prepareStatement(sql);
