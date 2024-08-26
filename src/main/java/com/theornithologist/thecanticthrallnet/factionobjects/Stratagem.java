@@ -27,4 +27,33 @@ public class Stratagem {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getCp_cost() {
+        return cp_cost;
+    }
+
+    public String getLegend() {
+        return legend;
+    }
+
+    public String getTurn() {
+        return turn;
+    }
+
+    public String getPhase() {
+        return phase;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
