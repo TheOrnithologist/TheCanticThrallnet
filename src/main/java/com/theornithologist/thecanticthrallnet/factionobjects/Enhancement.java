@@ -45,4 +45,9 @@ public class Enhancement {
     public void setCost(String cost) {
         this.cost = cost;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

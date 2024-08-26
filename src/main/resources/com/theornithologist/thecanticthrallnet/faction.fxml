@@ -17,20 +17,71 @@
     </VBox>
     <StackPane>
         <BorderPane fx:id="detachmentView" visible="false">
-            <left>
-                <ListView fx:id="detachmentList"/>
-<!--                <ListView fx:id="stratagemList"/>-->
-            </left>
+            <top>
+                <HBox alignment="CENTER">
+                    <Button fx:id="detachmentRules" text="Rules" onAction="#detachmentRulesButton"/>
+                    <Button fx:id="detachmentStratagems" text="Stratagems" onAction="#detachmentStratagemButton"/>
+                    <Button fx:id="detachmentEnhancements" text="Enhancements" onAction="#detachmentEnhancementButton"/>
+                </HBox>
+            </top>
             <center>
-                <VBox>
-                    <TextArea />
-                    <TextArea />
-                </VBox>
+                <StackPane>
+                    <StackPane fx:id="detachmentRulesView">
+                        <VBox>
+                            <Label fx:id="detachmentLabel"/>
+                            <VBox fx:id="dynamicVBox"/>
+                        </VBox>
+                    </StackPane>
+                    <StackPane fx:id="detachmentStratagemView" visible="false">
+                        <BorderPane>
+                            <left>
+                                <VBox>
+                                    <Label text="Stratagem Name:"/>
+                                    <ListView fx:id="stratagemList" onMouseClicked="#stratagemListSelect"/>
+                                </VBox>
+                            </left>
+                            <center>
+                                <VBox>
+                                    <Label fx:id="stratagemID"/>
+                                    <Label fx:id="stratagemType"/>
+                                    <Label fx:id="stratagemCost"/>
+                                    <Label fx:id="stratagemPhase"/>
+                                    <TextArea fx:id="stratagemRules" wrapText="true" editable="false"/>
+                                    <TextArea fx:id="stratagemLegend" wrapText="true" editable="false"/>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                    </StackPane>
+                    <StackPane fx:id="enhancementView" visible="false">
+                        <BorderPane>
+                            <left>
+                                <VBox>
+                                    <Label text="Enhancement Name:"/>
+                                    <ListView fx:id="enhancementList" onMouseClicked="#enhancementListSelect"/>
+                                </VBox>
+                            </left>
+                            <center>
+                                <VBox>
+                                    <Label fx:id="enhancementName"/>
+                                    <Label fx:id="enhancementCost"/>
+                                    <TextArea fx:id="enhancementRules" wrapText="true" editable="false"/>
+                                    <TextArea fx:id="enhancementLegend" wrapText="true" editable="false"/>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                    </StackPane>
+                </StackPane>
             </center>
+            <left>
+                <VBox>
+                    <Label text="Detachment Name:"/>
+                    <ListView fx:id="detachmentList" onMouseClicked="#detachmentListSelect"/>
+                </VBox>
+            </left>
         </BorderPane>
-        <VBox fx:id="armyView" visible="true">
+        <VBox fx:id="armyView">
             <Label fx:id="armyRuleName" styleClass="pane_header"/>
-            <TextArea fx:id="armyRuleBox" wrapText="true"/>
+            <TextArea fx:id="armyRuleBox" wrapText="true" editable="false"/>
         </VBox>
     </StackPane>
 </VBox>

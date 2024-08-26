@@ -71,6 +71,14 @@ public class Detachment {
         abilities = detachmentAbilityList;
     }
 
+    public String getDetachmentName() {
+        return detachmentName;
+    }
+
+    public List<DetachmentAbility> getAbilities() {
+        return abilities;
+    }
+
     @Override
     public String toString() {
         return detachmentName;
