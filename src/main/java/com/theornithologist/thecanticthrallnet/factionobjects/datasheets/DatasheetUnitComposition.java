@@ -2,13 +2,12 @@ package com.theornithologist.thecanticthrallnet.factionobjects.datasheets;
 
 public class DatasheetUnitComposition {
 
-    String datasheetID;
     String line;
     String description;
 
-
-    public String getDatasheetID() {
-        return datasheetID;
+    public DatasheetUnitComposition(String line, String description) {
+        this.line = line;
+        this.description = description;
     }
 
     public String getLine() {
