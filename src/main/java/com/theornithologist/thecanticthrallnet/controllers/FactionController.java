@@ -2,9 +2,9 @@ package com.theornithologist.thecanticthrallnet.controllers;
 
 import com.theornithologist.thecanticthrallnet.CanticThrallnet;
 import com.theornithologist.thecanticthrallnet.factionobjects.ActiveFaction;
-import com.theornithologist.thecanticthrallnet.factionobjects.Detachment;
-import com.theornithologist.thecanticthrallnet.factionobjects.Enhancement;
-import com.theornithologist.thecanticthrallnet.factionobjects.Stratagem;
+import com.theornithologist.thecanticthrallnet.factionobjects.detachments.Detachment;
+import com.theornithologist.thecanticthrallnet.factionobjects.detachments.Enhancement;
+import com.theornithologist.thecanticthrallnet.factionobjects.detachments.Stratagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

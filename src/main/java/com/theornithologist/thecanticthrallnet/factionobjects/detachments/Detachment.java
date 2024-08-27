@@ -1,7 +1,8 @@
-package com.theornithologist.thecanticthrallnet.factionobjects;
+package com.theornithologist.thecanticthrallnet.factionobjects.detachments;
 
 import com.theornithologist.thecanticthrallnet.datahandling.FactionIDConstants;
 import com.theornithologist.thecanticthrallnet.datahandling.FactionQuery;
+import com.theornithologist.thecanticthrallnet.factionobjects.ActiveFaction;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

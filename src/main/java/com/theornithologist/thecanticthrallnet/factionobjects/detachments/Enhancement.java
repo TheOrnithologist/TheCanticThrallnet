@@ -1,4 +1,4 @@
-package com.theornithologist.thecanticthrallnet.factionobjects;
+package com.theornithologist.thecanticthrallnet.factionobjects.detachments;
 
 public class Enhancement {
 
