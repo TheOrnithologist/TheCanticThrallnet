@@ -2,13 +2,10 @@ package com.theornithologist.thecanticthrallnet.factionobjects.datasheets;
 
 public class DatasheetLeader {
 
-    String leaderID;
     String attachedID;
 
-
-
-    public String getLeaderID() {
-        return leaderID;
+    public DatasheetLeader(String attachedID) {
+        this.attachedID = attachedID;
     }
 
     public String getAttachedID() {

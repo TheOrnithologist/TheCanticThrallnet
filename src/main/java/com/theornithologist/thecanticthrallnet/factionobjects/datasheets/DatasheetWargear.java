@@ -2,7 +2,6 @@ package com.theornithologist.thecanticthrallnet.factionobjects.datasheets;
 
 public class DatasheetWargear {
 
-    String datasheetsID;
     String line;
     String dice;
     String name;
@@ -15,9 +14,18 @@ public class DatasheetWargear {
     String armorPiercing;
     String damage;
 
-
-    public String getDatasheetsID() {
-        return datasheetsID;
+    public DatasheetWargear(String line, String dice, String name, String description, String range, String type, String attacks, String attackSkill, String strength, String armorPiercing, String damage) {
+        this.line = line;
+        this.dice = dice;
+        this.name = name;
+        this.description = description;
+        this.range = range;
+        this.type = type;
+        this.attacks = attacks;
+        this.attackSkill = attackSkill;
+        this.strength = strength;
+        this.armorPiercing = armorPiercing;
+        this.damage = damage;
     }
 
     public String getLine() {

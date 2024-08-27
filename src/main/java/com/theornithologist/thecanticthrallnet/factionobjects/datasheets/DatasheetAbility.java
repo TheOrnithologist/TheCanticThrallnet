@@ -2,7 +2,6 @@ package com.theornithologist.thecanticthrallnet.factionobjects.datasheets;
 
 public class DatasheetAbility {
 
-    String datasheetID;
     String line;
     String abilityID;
     String name;
@@ -10,9 +9,13 @@ public class DatasheetAbility {
     String type;
     String parameter;
 
-
-    public String getDatasheetID() {
-        return datasheetID;
+    public DatasheetAbility(String line, String abilityID, String name, String description, String type, String parameter) {
+        this.line = line;
+        this.abilityID = abilityID;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.parameter = parameter;
     }
 
     public String getLine() {

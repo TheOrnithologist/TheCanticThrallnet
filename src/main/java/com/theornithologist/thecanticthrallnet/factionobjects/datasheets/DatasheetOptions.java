@@ -2,14 +2,14 @@ package com.theornithologist.thecanticthrallnet.factionobjects.datasheets;
 
 public class DatasheetOptions {
 
-    String datasheetID;
     String line;
     String button;
     String description;
 
-
-    public String getDatasheetID() {
-        return datasheetID;
+    public DatasheetOptions(String line, String button, String description) {
+        this.line = line;
+        this.button = button;
+        this.description = description;
     }
 
     public String getLine() {

@@ -2,7 +2,6 @@ package com.theornithologist.thecanticthrallnet.factionobjects.datasheets;
 
 public class DatasheetModel {
 
-    String datasheetID;
     String line;
     String name;
     String movement;
@@ -16,10 +15,19 @@ public class DatasheetModel {
     String baseSize;
     String baseSizeDesc;
 
-
-
-    public String getDatasheetID() {
-        return datasheetID;
+    public DatasheetModel(String line, String name, String movement, String toughness, String save, String invulnerableSave, String invulnerableSaveDesc, String wounds, String leadership, String objectiveControl, String baseSize, String baseSizeDesc) {
+        this.line = line;
+        this.name = name;
+        this.movement = movement;
+        this.toughness = toughness;
+        this.save = save;
+        this.invulnerableSave = invulnerableSave;
+        this.invulnerableSaveDesc = invulnerableSaveDesc;
+        this.wounds = wounds;
+        this.leadership = leadership;
+        this.objectiveControl = objectiveControl;
+        this.baseSize = baseSize;
+        this.baseSizeDesc = baseSizeDesc;
     }
 
     public String getLine() {

@@ -2,6 +2,7 @@ package com.theornithologist.thecanticthrallnet.factionobjects;
 
 import com.theornithologist.thecanticthrallnet.datahandling.FactionIDConstants;
 import com.theornithologist.thecanticthrallnet.datahandling.FactionQuery;
+import com.theornithologist.thecanticthrallnet.factionobjects.datasheets.Datasheet;
 import com.theornithologist.thecanticthrallnet.factionobjects.detachments.Detachment;
 
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ public class ActiveFaction {
     List<Detachment> detachments;
     FactionQuery factionQuery = new FactionQuery();
     List<FactionIDConstants> factionIDConstants = Arrays.asList(FactionIDConstants.values());
+    List<Datasheet> datasheets;
 
     private static ActiveFaction instance;
 
@@ -70,6 +72,27 @@ public class ActiveFaction {
             detachmentList.add(new Detachment(rs.getString("detachment")));
         }
         detachments = detachmentList;
+    }
+
+    public void setDatasheets() throws SQLException {
+        String factionValue = FactionIDConstants.fromValue(factionName).toString();
+        ResultSet rs = factionQuery.getDatasheet(factionValue);
+        List<Datasheet> datasheetList = new ArrayList<>();
+        while(rs.next()) {
+            datasheetList.add(new Datasheet(rs.getString("id"),
+                    rs.getString("name"),
+                    rs.getString("faction_id"),
+                    rs.getString("legend"),
+                    rs.getString("role"),
+                    rs.getString("loadout"),
+                    rs.getString("trasnport"),
+                    rs.getString("virtual"),
+                    rs.getString("leader_head"),
+                    rs.getString("leader_footer"),
+                    rs.getString("damaged_w"),
+                    rs.getString("damaged_description")));
+        }
+        datasheets = datasheetList;
     }
 
     public String getFactionName() {
