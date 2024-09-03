@@ -7,6 +7,7 @@ import com.theornithologist.thecanticthrallnet.factionobjects.ActiveFaction;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Detachment {
@@ -20,7 +21,9 @@ public class Detachment {
     public Detachment(String detachmentName) throws SQLException {
         this.detachmentName = detachmentName;
         setStratagems();
+        stratagems.sort(Comparator.comparing(Stratagem::getName));
         setEnhancements();
+        enhancements.sort(Comparator.comparing(Enhancement::getName));
         setAbilities();
     }
 

@@ -4,6 +4,7 @@ module com.theornithologist.thecanticthrallnet {
     requires java.sql;
     requires org.apache.commons.csv;
     requires java.desktop;
+    requires javafx.web;
 
 
     opens com.theornithologist.thecanticthrallnet to javafx.fxml;
