@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetModelController">
+    <Label fx:id="modelName"/>
+    <GridPane fx:id="stats" hgap="10">
+        <Label text="M" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Label text="T" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Label text="Sv" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        <Label text="W" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+        <Label text="Ld" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+        <Label text="OC" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+        <Label text="Inv Sv" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
+        <Label fx:id="saveDescription" GridPane.columnIndex="7" GridPane.rowIndex="0" GridPane.rowSpan="2"/>
+        <Label fx:id="movement" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Label fx:id="toughness" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label fx:id="save" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <Label fx:id="wounds" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+        <Label fx:id="leadership" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+        <Label fx:id="objectiveControl" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+        <Label fx:id="invSave" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+    </GridPane>
+</VBox>

@@ -81,7 +81,7 @@ public class FactionQuery {
     }
 
     public ResultSet getDatasheet(String faction) {
-        String sql = "SELECT id, name, legend, role, loadout, transport, virtual, leader_footer," +
+        String sql = "SELECT id, name, legend, role, loadout, transport, virtual, leader_footer, " +
                 "damaged_w, damaged_description FROM Datasheets where faction_id ='" + faction + "'";
         try {
             var conn = DriverManager.getConnection(URL);
@@ -94,11 +94,24 @@ public class FactionQuery {
     }
 
     public ResultSet getDatasheetAbilities(String datasheetID) {
-        String sql = "SELECT line, ability_id, name, description, type," +
-                " parameter FROM Datasheets_abilities where datasheet_id ='" + datasheetID + "'";
+        String sql = """
+                SELECT ds.line, ds.ability_id,
+                	CASE
+                		WHEN ds.name IS NULL OR ds.name = '' THEN a.name
+                		ELSE ds.name
+                	END AS name,
+                	CASE
+                		WHEN ds.description IS NULL OR ds.description = '' THEN a.description
+                		ELSE ds.description
+                	END AS description,\s
+                	ds.type, ds.parameter
+                FROM Datasheets_abilities ds
+                LEFT JOIN Abilities a ON ds.ability_id = a.id
+                WHERE ds.datasheet_id = ?""";
         try {
             var conn = DriverManager.getConnection(URL);
             var stmt = conn.prepareStatement(sql);
+            stmt.setString(1, datasheetID);
             return stmt.executeQuery();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -119,10 +132,15 @@ public class FactionQuery {
     }
 
     public ResultSet getDatasheetLeaders(String datasheetID) {
-        String sql = "SELECT attached_id FROM Datasheets_leader where leader_id ='" + datasheetID + "'";
+        String sql = """
+                SELECT dl.attached_id, ds.name
+                FROM Datasheets_leader dl
+                LEFT JOIN Datasheets ds ON dl.attached_id = ds.id
+                WHERE leader_id = ?""";
         try {
             var conn = DriverManager.getConnection(URL);
             var stmt = conn.prepareStatement(sql);
+            stmt.setString(1, datasheetID);
             return stmt.executeQuery();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

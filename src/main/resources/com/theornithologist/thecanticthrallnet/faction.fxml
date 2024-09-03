@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.web.WebView?>
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theornithologist.thecanticthrallnet.controllers.FactionController">
     <VBox alignment="CENTER">
         <StackPane>
@@ -12,7 +12,7 @@
         <HBox alignment="CENTER">
             <Button fx:id="armyRuleButton" text="Army Rule" prefWidth="333" onAction="#armyRuleButton"/>
             <Button fx:id="detachmentButton" text="Detachments" prefWidth="333" onAction="#detachmentButton"/>
-            <Button fx:id="datasheetButton" text="Datasheets" prefWidth="333"/>
+            <Button fx:id="datasheetButton" text="Datasheets" prefWidth="333" onAction="#datasheetButton"/>
         </HBox>
     </VBox>
     <StackPane>
@@ -83,5 +83,34 @@
             <Label fx:id="armyRuleName" styleClass="pane_header"/>
             <TextArea fx:id="armyRuleBox" wrapText="true" editable="false"/>
         </VBox>
+        <BorderPane fx:id="datasheetView" visible="false">
+            <left>
+                <ListView fx:id="datasheetList" onMouseClicked="#datasheetListSelect"/>
+            </left>
+            <center>
+                <VBox>
+                    <Label fx:id="datasheetName"/>
+                    <VBox fx:id="modelStats"/>
+                    <WebView fx:id="datasheetLegend"/>
+                    <Label fx:id="datasheetRole"/>
+                    <Label text="Wargear:"/>
+                    <VBox fx:id="wargear"/>
+                    <Label text="Abilities:"/>
+                    <VBox fx:id="dynamicDatasheetAbilities"/>
+                    <Label fx:id="leaderHeader" text="Leader: " visible="false"/>
+                    <HBox fx:id="leaderBox"/>
+                    <WebView fx:id="datasheetTransport"/>
+                    <WebView fx:id="datasheetLeaderRule"/>
+                    <Label fx:id="datasheetWoundsRange"/>
+                    <WebView fx:id="datasheetWoundsRules"/>
+                    <Label text="Unit Composition"/>
+                    <VBox fx:id="composition"/>
+                    <VBox fx:id="options"/>
+                    <VBox fx:id="cost"/>
+                    <Label text="Keywords:"/>
+                    <HBox fx:id="keywordBox"/>
+                </VBox>
+            </center>
+        </BorderPane>
     </StackPane>
 </VBox>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.web.WebView?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetWargearController">
+    <TitledPane fx:id="weaponName" expanded="false">
+        <VBox>
+            <GridPane hgap="15">
+                <Label text="Range" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label text="A" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="BS/WS" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <Label text="S" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                <Label text="AP" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                <Label text="D" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+                <Label fx:id="range" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Label fx:id="attacks" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label fx:id="skill" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <Label fx:id="strength" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                <Label fx:id="armorPiercing" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+                <Label fx:id="damage" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
+            </GridPane>
+            <WebView fx:id="modifiers"/>
+        </VBox>
+    </TitledPane>
+
+</VBox>

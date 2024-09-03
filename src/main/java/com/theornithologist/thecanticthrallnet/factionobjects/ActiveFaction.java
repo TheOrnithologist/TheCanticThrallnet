@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class ActiveFaction {
@@ -41,6 +42,9 @@ public class ActiveFaction {
         setArmyRuleName();
         setArmyRule();
         setDetachments();
+        detachments.sort(Comparator.comparing(Detachment::getDetachmentName));
+        setDatasheets();
+        datasheets.sort(Comparator.comparing(Datasheet::getName));
     }
 
 
@@ -81,18 +85,20 @@ public class ActiveFaction {
         while(rs.next()) {
             datasheetList.add(new Datasheet(rs.getString("id"),
                     rs.getString("name"),
-                    rs.getString("faction_id"),
                     rs.getString("legend"),
                     rs.getString("role"),
                     rs.getString("loadout"),
-                    rs.getString("trasnport"),
+                    rs.getString("transport"),
                     rs.getString("virtual"),
-                    rs.getString("leader_head"),
                     rs.getString("leader_footer"),
                     rs.getString("damaged_w"),
                     rs.getString("damaged_description")));
         }
         datasheets = datasheetList;
+    }
+
+    public List<Datasheet> getDatasheets() {
+        return datasheets;
     }
 
     public String getFactionName() {

@@ -11,13 +11,11 @@ public class Datasheet {
 
     String id;
     String name;
-    String factionID;
     String legend;
     String role;
     String loadout;
     String transport;
     String virtual;
-    String leaderHead;
     String leaderFooter;
     String damagedw;
     String damagedDescription;
@@ -31,21 +29,20 @@ public class Datasheet {
     List<DatasheetWargear> datasheetWargears;
     FactionQuery factionQuery = new FactionQuery();
 
-    public Datasheet(String id, String name, String factionID, String legend, String role, String loadout, String transport, String virtual, String leaderHead, String leaderFooter, String damagedw, String damagedDescription) throws SQLException {
+    public Datasheet(String id, String name, String legend, String role, String loadout, String transport, String virtual, String leaderFooter, String damagedw, String damagedDescription) throws SQLException {
         this.id = id;
         this.name = name;
-        this.factionID = factionID;
         this.legend = legend;
         this.role = role;
         this.loadout = loadout;
         this.transport = transport;
         this.virtual = virtual;
-        this.leaderHead = leaderHead;
         this.leaderFooter = leaderFooter;
         this.damagedw = damagedw;
         this.damagedDescription = damagedDescription;
         setDatasheetAbilities();
         setDatasheetKeywords();
+        setDatasheetLeaders();
         setDatasheetModels();
         setDatasheetModelCost();
         setDatasheetOptions();
@@ -59,10 +56,6 @@ public class Datasheet {
 
     public String getName() {
         return name;
-    }
-
-    public String getFactionID() {
-        return factionID;
     }
 
     public String getLegend() {
@@ -83,10 +76,6 @@ public class Datasheet {
 
     public String getVirtual() {
         return virtual;
-    }
-
-    public String getLeaderHead() {
-        return leaderHead;
     }
 
     public String getLeaderFooter() {
@@ -143,6 +132,12 @@ public class Datasheet {
                     rs.getString("description"),
                     rs.getString("type"),
                     rs.getString("parameter")));
+            System.out.println(rs.getString("line"));
+            System.out.println(rs.getString("ability_id"));
+            System.out.println(rs.getString("name"));
+            System.out.println(rs.getString("description"));
+            System.out.println(rs.getString("type"));
+            System.out.println(rs.getString("parameter"));
         }
         datasheetAbilities = abilityList;
     }
@@ -162,7 +157,9 @@ public class Datasheet {
         ResultSet rs = factionQuery.getDatasheetLeaders(id);
         List<DatasheetLeader> leaderList = new ArrayList<>();
         while(rs.next()) {
-            leaderList.add(new DatasheetLeader(rs.getString("attached_label")));
+            leaderList.add(new DatasheetLeader(rs.getString("attached_id"), rs.getString("name")));
+            System.out.println(rs.getString("attached_id"));
+            System.out.println(rs.getString("name"));
         }
         datasheetLeaders = leaderList;
     }
@@ -182,7 +179,7 @@ public class Datasheet {
                     rs.getString("Ld"),
                     rs.getString("OC"),
                     rs.getString("base_size"),
-                    rs.getString("bse_size_descr")));
+                    rs.getString("base_size_descr")));
         }
         datasheetModels = modelList;
     }
@@ -220,7 +217,7 @@ public class Datasheet {
     }
 
     public void setDatasheetWargear() throws SQLException {
-        ResultSet rs = factionQuery.getDatasheetKeywords(id);
+        ResultSet rs = factionQuery.getDatasheetWargear(id);
         List<DatasheetWargear> wargearList = new ArrayList<>();
         while(rs.next()) {
             wargearList.add(new DatasheetWargear(rs.getString("line"),
@@ -236,5 +233,10 @@ public class Datasheet {
                     rs.getString("D")));
         }
         datasheetWargears = wargearList;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -3,13 +3,18 @@
     src: url('file:src/main/resources/com/theornithologist/thecanticthrallnet/font/CloisterBlack.ttf');
 }
 
+@font-face {
+    -font-family: 'Chomsky';
+    src: url('file:src/main/resources/com/theornithologist/thecanticthrallnet/font/Chomsky.otf');
+}
+
 .header {
-    -fx-font-family: 'Cloister Black';
+    -fx-font-family: 'Chomsky';
     -fx-font-size: 96;
 }
 
 .pane_header {
-    -fx-font-family: 'Cloister Black';
+    -fx-font-family: 'Chomsky';
     -fx-font-size: 32;
     -fx-pref-width: 333;
 }
