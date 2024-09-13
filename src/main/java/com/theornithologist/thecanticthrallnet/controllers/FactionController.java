@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -38,7 +39,7 @@ public class FactionController {
     @FXML
     Label armyRuleName;
     @FXML
-    TextArea armyRuleBox;
+    WebView armyRuleBox;
     @FXML
     Label factionLabel;
     @FXML
@@ -70,7 +71,7 @@ public class FactionController {
     @FXML
     Label stratagemPhase;
     @FXML
-    TextArea stratagemRules;
+    WebView stratagemRules;
     @FXML
     ListView<Enhancement> enhancementList;
     @FXML
@@ -78,7 +79,7 @@ public class FactionController {
     @FXML
     Label enhancementCost;
     @FXML
-    TextArea enhancementRules;
+    WebView enhancementRules;
     @FXML
     TextArea enhancementLegend;
     @FXML
@@ -119,6 +120,12 @@ public class FactionController {
     VBox composition;
     @FXML
     VBox wargear;
+    @FXML
+    ImageView thrallnetImage;
+    @FXML
+    VBox stratagemHeader;
+    @FXML
+    VBox enhancementHeader;
 
     ActiveFaction activeFaction = ActiveFaction.getInstance();
     SceneController sceneController = new SceneController();
@@ -127,7 +134,7 @@ public class FactionController {
         factionLabel.setText(activeFaction.getFactionName());
         activeFaction.updateData();
         armyRuleName.setText(activeFaction.getArmyRuleName());
-        armyRuleBox.setText(activeFaction.getArmyRule());
+        armyRuleBox.getEngine().loadContent(activeFaction.getArmyRule());
         showDetachments();
         showStratagems();
         showEnhancements();
@@ -147,7 +154,7 @@ public class FactionController {
             Parent element = loader.load();
             DetachmentController detachmentController = loader.getController();
             detachmentController.getFactionAbilityName().setText(item.getAbilities().get(i).getName());
-            detachmentController.getFactionAbilityText().setText(item.getAbilities().get(i).getDescription());
+            detachmentController.getFactionAbilityText().getEngine().loadContent(item.getAbilities().get(i).getDescription());
             detachmentController.getFactionAbilityLegend().setText(item.getAbilities().get(i).getLegend());
             dynamicVBox.getChildren().add(element);
         }
@@ -161,7 +168,7 @@ public class FactionController {
         stratagemType.setText(item.getType());
         stratagemCost.setText("Cost: " + item.getCp_cost() + "CP");
         stratagemPhase.setText(item.getPhase());
-        stratagemRules.setText(item.getDescription());
+        stratagemRules.getEngine().loadContent(item.getDescription());
         stratagemLegend.setText(item.getLegend());
     }
 
@@ -169,8 +176,8 @@ public class FactionController {
         Enhancement item = enhancementList.getSelectionModel().getSelectedItem();
         enhancementName.setText(item.getName());
         enhancementCost.setText("Cost: " + item.getCost() + "pts");
-        enhancementRules.setText(item.getDescription());
-        stratagemLegend.setText(item.getLegend());
+        enhancementRules.getEngine().loadContent(item.getDescription());
+        enhancementLegend.setText(item.getLegend());
     }
 
     public void datasheetListSelect() throws IOException {
@@ -375,21 +382,40 @@ public class FactionController {
     public void detachmentRulesButton() {
         detachmentRulesView.setVisible(true);
         detachmentStratagemView.setVisible(false);
+        stratagemHeader.setVisible(false);
+        stratagemHeader.setManaged(false);
         enhancementView.setVisible(false);
+        enhancementHeader.setVisible(false);
+        enhancementHeader.setManaged(false);
+        thrallnetImage.setVisible(true);
+        thrallnetImage.setManaged(true);
         detachmentRulesView.toFront();
     }
 
     public void detachmentStratagemButton() {
         detachmentRulesView.setVisible(false);
+        detachmentRulesView.setManaged(false);
         detachmentStratagemView.setVisible(true);
+        stratagemHeader.setVisible(true);
+        stratagemHeader.setManaged(true);
         enhancementView.setVisible(false);
+        enhancementHeader.setVisible(false);
+        enhancementHeader.setManaged(false);
+        thrallnetImage.setVisible(false);
+        thrallnetImage.setManaged(false);
         detachmentStratagemView.toFront();
     }
 
     public void detachmentEnhancementButton() {
         detachmentRulesView.setVisible(false);
         detachmentStratagemView.setVisible(false);
+        stratagemHeader.setVisible(false);
+        stratagemHeader.setManaged(false);
         enhancementView.setVisible(true);
+        enhancementHeader.setVisible(true);
+        enhancementHeader.setManaged(true);
+        thrallnetImage.setVisible(false);
+        thrallnetImage.setManaged(false);
         enhancementView.toFront();
     }
 }

@@ -6,8 +6,8 @@
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theornithologist.thecanticthrallnet.controllers.DetachmentController">
     <children>
-        <Label fx:id="factionAbilityName"/>
-        <TextArea fx:id="factionAbilityText" wrapText="true"/>
-        <TextArea fx:id="factionAbilityLegend" wrapText="true"/>
+        <Label fx:id="factionAbilityName" styleClass="detachment_header"/>
+        <WebView fx:id="factionAbilityText" styleClass="detachment_web_view"/>
+        <TextArea fx:id="factionAbilityLegend" editable="false" wrapText="true"/>
     </children>
 </VBox>

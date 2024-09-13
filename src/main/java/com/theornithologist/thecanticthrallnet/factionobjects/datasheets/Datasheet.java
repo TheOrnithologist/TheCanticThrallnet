@@ -132,12 +132,6 @@ public class Datasheet {
                     rs.getString("description"),
                     rs.getString("type"),
                     rs.getString("parameter")));
-            System.out.println(rs.getString("line"));
-            System.out.println(rs.getString("ability_id"));
-            System.out.println(rs.getString("name"));
-            System.out.println(rs.getString("description"));
-            System.out.println(rs.getString("type"));
-            System.out.println(rs.getString("parameter"));
         }
         datasheetAbilities = abilityList;
     }
@@ -158,8 +152,6 @@ public class Datasheet {
         List<DatasheetLeader> leaderList = new ArrayList<>();
         while(rs.next()) {
             leaderList.add(new DatasheetLeader(rs.getString("attached_id"), rs.getString("name")));
-            System.out.println(rs.getString("attached_id"));
-            System.out.println(rs.getString("name"));
         }
         datasheetLeaders = leaderList;
     }

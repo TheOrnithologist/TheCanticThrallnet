@@ -8,23 +8,48 @@
     src: url('file:src/main/resources/com/theornithologist/thecanticthrallnet/font/Chomsky.otf');
 }
 
+.text-area{
+    -fx-font-style: italic;
+    -fx-font-size: 16;
+    -fx-pref-height: 100;
+}
+
 .header {
-    -fx-font-family: 'Chomsky';
     -fx-font-size: 96;
 }
 
 .pane_header {
-    -fx-font-family: 'Chomsky';
-    -fx-font-size: 32;
+    -fx-font-size: 40;
+}
+
+.faction_button_header {
+    -fx-font-size: 30;
     -fx-pref-width: 333;
 }
 
 .large_button {
-    -fx-font-size: 24;
-    -fx-pref-width: 275;
+    -fx-font-size: 18;
+    -fx-pref-width: 333;
 }
 
-.faction_header {
-    -fx-font-family: 'Cloister Black';
-    -fx-font-size: 40
+.medium_button {
+    -fx-font-size: 16;
+    -fx-pref-width: 300;
+}
+
+.detachment_list {
+    -fx-pef-width: 500;
+    -fx-font-size: 18;
+}
+
+.detachment_header {
+    -fx-font-size: 20;
+}
+
+.detachment_web_view {
+    -fx-font-size: 16;
+}
+
+#faction_header {
+    -fx-font-size: 60
 }

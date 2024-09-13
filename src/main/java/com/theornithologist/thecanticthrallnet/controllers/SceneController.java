@@ -1,8 +1,8 @@
 package com.theornithologist.thecanticthrallnet.controllers;
 
 import com.theornithologist.thecanticthrallnet.CanticThrallnet;
-import com.theornithologist.thecanticthrallnet.factionobjects.ActiveFaction;
 import com.theornithologist.thecanticthrallnet.datahandling.FactionIDConstants;
+import com.theornithologist.thecanticthrallnet.factionobjects.ActiveFaction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -35,6 +35,5 @@ public class SceneController {
         ActiveFaction activeFaction = ActiveFaction.getInstance();
         activeFaction.setFactionName(factionParsed);
         System.out.println(factionSelected);
-
     }
 }
