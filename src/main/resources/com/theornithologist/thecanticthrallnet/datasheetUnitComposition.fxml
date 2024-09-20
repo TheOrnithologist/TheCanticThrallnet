@@ -9,5 +9,5 @@
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetUnitCompositionController">
-    <Label fx:id="compositionOption"/>
+    <Label fx:id="compositionOption" styleClass="datasheet_item"/>
 </VBox>

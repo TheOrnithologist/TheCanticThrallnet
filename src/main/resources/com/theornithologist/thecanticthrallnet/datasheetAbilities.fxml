@@ -10,10 +10,10 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetAbilityController">
-    <TitledPane fx:id="abilityName" expanded="false">
-        <HBox>
-            <Label fx:id="abilityParameter" visible="false"/>
-            <WebView fx:id="abilityDescription"/>
-        </HBox>
+    <TitledPane fx:id="abilityName" expanded="false" styleClass="datasheet_item">
+        <VBox>
+            <Label fx:id="abilityParameter" visible="false" styleClass="datasheet_item"/>
+            <WebView fx:id="abilityDescription" style="-fx-pref-height: 75;"/>
+        </VBox>
     </TitledPane>
 </VBox>

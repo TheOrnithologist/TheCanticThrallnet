@@ -7,7 +7,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theornithologist.thecanticthrallnet.controllers.FactionController">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theornithologist.thecanticthrallnet.controllers.FactionController"
+    stylesheets="@styles.css">
     <VBox alignment="CENTER">
         <StackPane>
             <Button fx:id="backButton" text="Back" StackPane.alignment="TOP_LEFT" onAction="#backButton"/>
@@ -67,7 +68,7 @@
                                     <Label fx:id="stratagemType" styleClass="detachment_header"/>
                                     <Label fx:id="stratagemCost" styleClass="detachment_header"/>
                                     <Label fx:id="stratagemPhase" styleClass="detachment_header"/>
-                                    <WebView fx:id="stratagemRules" styleClass="detachment_web_view"/>
+                                    <WebView fx:id="stratagemRules" style="-fx-pref-height: 250;"/>
                                     <TextArea fx:id="stratagemLegend" wrapText="true" editable="false"/>
                                 </VBox>
                             </center>
@@ -79,7 +80,7 @@
                                 <VBox>
                                     <Label fx:id="enhancementName" styleClass="detachment_header"/>
                                     <Label fx:id="enhancementCost" styleClass="detachment_header"/>
-                                    <WebView fx:id="enhancementRules" styleClass="detachment_web_view"/>
+                                    <WebView fx:id="enhancementRules" style="-fx-pref-height: 250;"/>
                                     <TextArea fx:id="enhancementLegend" wrapText="true" editable="false"/>
                                 </VBox>
                             </center>
@@ -87,9 +88,6 @@
                     </StackPane>
                 </StackPane>
             </center>
-            <left>
-
-            </left>
         </BorderPane>
         <VBox fx:id="armyView" alignment="TOP_CENTER">
             <Separator/>
@@ -98,31 +96,41 @@
         </VBox>
         <BorderPane fx:id="datasheetView" visible="false">
             <left>
-                <ListView fx:id="datasheetList" onMouseClicked="#datasheetListSelect"/>
+                <Label text="Datasheet name:"/>
+                <ListView fx:id="datasheetList" onMouseClicked="#datasheetListSelect" style="-fx-font-size: 16"/>
             </left>
             <center>
-                <VBox>
-                    <Label fx:id="datasheetName"/>
-                    <VBox fx:id="modelStats"/>
-                    <WebView fx:id="datasheetLegend"/>
-                    <Label fx:id="datasheetRole"/>
-                    <Label text="Wargear:"/>
-                    <VBox fx:id="wargear"/>
-                    <Label text="Abilities:"/>
-                    <VBox fx:id="dynamicDatasheetAbilities"/>
-                    <Label fx:id="leaderHeader" text="Leader: " visible="false"/>
-                    <HBox fx:id="leaderBox"/>
-                    <WebView fx:id="datasheetTransport"/>
-                    <WebView fx:id="datasheetLeaderRule"/>
-                    <Label fx:id="datasheetWoundsRange"/>
-                    <WebView fx:id="datasheetWoundsRules"/>
-                    <Label text="Unit Composition"/>
-                    <VBox fx:id="composition"/>
-                    <VBox fx:id="options"/>
-                    <VBox fx:id="cost"/>
-                    <Label text="Keywords:"/>
-                    <HBox fx:id="keywordBox"/>
-                </VBox>
+                <ScrollPane fitToWidth="true">
+                    <VBox>
+                        <Label fx:id="datasheetName" styleClass="detachment_header"/>
+                        <VBox fx:id="modelStats"/>
+                        <WebView fx:id="datasheetLegend" style="-fx-pref-height: 75;"/>
+                        <Separator/>
+                        <Label fx:id="datasheetRole" styleClass="detachment_header"/>
+                        <Separator/>
+                        <Label text="Wargear:" styleClass="detachment_header"/>
+                        <VBox fx:id="wargear"/>
+                        <Separator/>
+                        <Label text="Abilities:" styleClass="detachment_header"/>
+                        <VBox fx:id="dynamicDatasheetAbilities"/>
+                        <Separator/>
+                        <Label fx:id="leaderHeader" text="Leader: " visible="false" styleClass="detachment_header"/>
+                        <HBox fx:id="leaderBox"/>
+                        <Separator/>
+                        <WebView fx:id="datasheetTransport" managed="false" style="-fx-pref-height: 75;"/>
+                        <WebView fx:id="datasheetLeaderRule" managed="false" style="-fx-pref-height: 75;"/>
+                        <Label fx:id="datasheetWoundsRange" managed="false" style="-fx-pref-height: 75;"/>
+                        <WebView fx:id="datasheetWoundsRules" managed="false" style="-fx-pref-height: 75;"/>
+                        <Separator/>
+                        <Label text="Unit Composition" styleClass="detachment_header"/>
+                        <VBox fx:id="composition"/>
+                        <VBox fx:id="options"/>
+                        <VBox fx:id="cost"/>
+                        <Separator/>
+                        <Label text="Keywords:" styleClass="detachment_header"/>
+                        <GridPane fx:id="keywordBox" />
+                    </VBox>
+                </ScrollPane>
             </center>
         </BorderPane>
     </StackPane>

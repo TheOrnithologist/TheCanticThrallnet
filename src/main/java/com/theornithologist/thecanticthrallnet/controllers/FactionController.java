@@ -15,10 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
@@ -105,7 +102,7 @@ public class FactionController {
     @FXML
     VBox dynamicDatasheetAbilities;
     @FXML
-    HBox keywordBox;
+    GridPane keywordBox;
     @FXML
     HBox leaderBox;
     @FXML
@@ -188,27 +185,35 @@ public class FactionController {
         populateDatasheetAbilities(item);
         if (!item.getTransport().equals("")) {
             datasheetTransport.setVisible(true);
+            datasheetTransport.setManaged(true);
             datasheetTransport.getEngine().loadContent(item.getTransport());
         } else {
             datasheetTransport.setVisible(false);
+            datasheetTransport.setManaged(false);
         }
         if (!item.getLeaderFooter().equals("")) {
             datasheetLeaderRule.setVisible(true);
+            datasheetLeaderRule.setManaged(true);
             datasheetLeaderRule.getEngine().loadContent(item.getLeaderFooter());
         } else {
             datasheetLeaderRule.setVisible(false);
+            datasheetLeaderRule.setManaged(false);
         }
         if (!item.getDamagedw().equals("")) {
             datasheetWoundsRange.setVisible(true);
+            datasheetWoundsRange.setManaged(true);
             datasheetWoundsRange.setText("Wounds " + item.getDamagedw());
         } else {
             datasheetWoundsRange.setVisible(false);
+            datasheetWoundsRange.setManaged(false);
         }
         if (!item.getDamagedDescription().equals("")) {
             datasheetWoundsRules.setVisible(true);
+            datasheetWoundsRules.setManaged(true);
             datasheetWoundsRules.getEngine().loadContent(item.getDamagedDescription());
         } else {
             datasheetWoundsRules.setVisible(false);
+            datasheetWoundsRules.setManaged(false);
         }
         populateDatasheetKeywords(item);
         populateDatasheetLeader(item);
@@ -232,7 +237,14 @@ public class FactionController {
             controller.getStrength().setText(datasheet.getDatasheetWargears().get(i).getStrength());
             controller.getArmorPiercing().setText(datasheet.getDatasheetWargears().get(i).getArmorPiercing());
             controller.getDamage().setText(datasheet.getDatasheetWargears().get(i).getDamage());
-            controller.getModifiers().getEngine().loadContent(datasheet.getDatasheetWargears().get(i).getDescription());
+            if (datasheet.getDatasheetWargears().get(i).getDescription().equals("")) {
+                controller.getModifiers().setManaged(false);
+                controller.getModifiers().setVisible(false);
+            } else {
+                controller.getModifiers().setManaged(true);
+                controller.getModifiers().setVisible(true);
+                controller.getModifiers().getEngine().loadContent(datasheet.getDatasheetWargears().get(i).getDescription());
+            }
             wargear.getChildren().add(element);
         }
     }
@@ -292,12 +304,16 @@ public class FactionController {
 
     public void populateDatasheetLeader(Datasheet datasheet) throws IOException {
         leaderBox.getChildren().clear();
-        if (datasheet.getDatasheetLeaders() == null) {
+        if (datasheet.getDatasheetLeaders().isEmpty()) {
             leaderBox.setVisible(false);
+            leaderBox.setManaged(false);
             leaderHeader.setVisible(false);
+            leaderHeader.setManaged(false);
         } else {
             leaderHeader.setVisible(true);
+            leaderHeader.setManaged(true);
             leaderBox.setVisible(true);
+            leaderBox.setManaged(true);
             for (int i = 0; i < datasheet.getDatasheetLeaders().size(); i++) {
                 FXMLLoader loader = new FXMLLoader(CanticThrallnet.class.getResource("datasheetLeaders.fxml"));
                 Parent element = loader.load();
@@ -314,8 +330,14 @@ public class FactionController {
             FXMLLoader loader = new FXMLLoader(CanticThrallnet.class.getResource("datasheetKeywords.fxml"));
             Parent element = loader.load();
             DatasheetKeywordController controller = loader.getController();
-            controller.getKeyword().setText(datasheet.getDatasheetKeywords().get(i).getKeyword());
-            keywordBox.getChildren().add(element);
+            if (i < 5) {
+                controller.getKeyword().setText(datasheet.getDatasheetKeywords().get(i).getKeyword());
+                keywordBox.add(element, i, 0);
+            } else {
+                controller.getKeyword().setText(datasheet.getDatasheetKeywords().get(i).getKeyword());
+                keywordBox.add(element, i - 5, 1);
+            }
+
         }
     }
 
@@ -327,7 +349,7 @@ public class FactionController {
             DatasheetAbilityController controller = loader.getController();
             controller.getAbilityName().setText(datasheet.getDatasheetAbilities().get(i).getName());
             if (!datasheet.getDatasheetAbilities().get(i).getParameter().equals("")) {
-                controller.getAbilityParameter().setText(datasheet.getDatasheetAbilities().get(i).getParameter());
+                controller.getAbilityParameter().setText("Parameter: " + datasheet.getDatasheetAbilities().get(i).getParameter());
                 controller.abilityParameter.setVisible(true);
             }
             controller.getAbilityDescription().getEngine().loadContent(datasheet.getDatasheetAbilities().get(i).getDescription());

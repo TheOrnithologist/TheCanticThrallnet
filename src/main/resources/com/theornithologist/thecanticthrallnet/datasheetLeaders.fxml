@@ -9,6 +9,6 @@
 <HBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetLeadersController">
-    <Label fx:id="unitName"/>
+    <Label fx:id="unitName" styleClass="datasheet_item"/>
     <Label prefWidth="10"/>
 </HBox>

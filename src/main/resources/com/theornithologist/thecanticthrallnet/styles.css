@@ -50,10 +50,10 @@
     -fx-font-size: 24;
 }
 
-.detachment_web_view {
-    -fx-pref-height: 250;
-}
-
 .faction_header {
     -fx-font-size: 60
+}
+
+.datasheet_item {
+    -fx-font-size: 16;
 }
