@@ -46,10 +46,14 @@
     -fx-font-size: 20;
 }
 
-.detachment_web_view {
-    -fx-font-size: 16;
+.detachment_header_big {
+    -fx-font-size: 24;
 }
 
-#faction_header {
+.detachment_web_view {
+    -fx-pref-height: 250;
+}
+
+.faction_header {
     -fx-font-size: 60
 }

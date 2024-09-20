@@ -13,6 +13,7 @@
             <Button fx:id="backButton" text="Back" StackPane.alignment="TOP_LEFT" onAction="#backButton"/>
             <Label fx:id="factionLabel" text="Faction" StackPane.alignment="CENTER" styleClass="faction_header"/>
         </StackPane>
+        <Separator/>
         <HBox alignment="CENTER">
             <Button fx:id="armyRuleButton" text="Army Rule" prefWidth="333" onAction="#armyRuleButton" styleClass="large_button"/>
             <Button fx:id="detachmentButton" text="Detachments" prefWidth="333" onAction="#detachmentButton" styleClass="large_button"/>
@@ -23,11 +24,13 @@
         <BorderPane fx:id="detachmentView" visible="false">
             <top>
                 <VBox>
+                    <Separator/>
                     <HBox alignment="CENTER">
                         <Button fx:id="detachmentRules" text="Rules" styleClass="medium_button" onAction="#detachmentRulesButton"/>
                         <Button fx:id="detachmentStratagems" text="Stratagems" styleClass="medium_button" onAction="#detachmentStratagemButton"/>
                         <Button fx:id="detachmentEnhancements" text="Enhancements" styleClass="medium_button" onAction="#detachmentEnhancementButton"/>
                     </HBox>
+                    <Separator/>
                     <TilePane>
                         <VBox>
                             <Label text="Detachment Name:" styleClass="detachment_header"/>
@@ -45,13 +48,14 @@
                             <Image url="@icons/CanticThrallnet256.png"/>
                         </ImageView>
                     </TilePane>
+                    <Separator/>
                 </VBox>
             </top>
             <center>
                 <StackPane>
                     <StackPane fx:id="detachmentRulesView">
                         <VBox>
-                            <Label fx:id="detachmentLabel" styleClass="detachment_header"/>
+                            <Label fx:id="detachmentLabel" styleClass="detachment_header_big"/>
                             <VBox fx:id="dynamicVBox"/>
                         </VBox>
                     </StackPane>
@@ -87,10 +91,8 @@
 
             </left>
         </BorderPane>
-        <VBox fx:id="armyView">
-            <padding>
-                <Insets top="15"/>
-            </padding>
+        <VBox fx:id="armyView" alignment="TOP_CENTER">
+            <Separator/>
             <Label fx:id="armyRuleName" styleClass="pane_header" textAlignment="CENTER"/>
             <WebView fx:id="armyRuleBox" fontScale="1.25"/>
         </VBox>
