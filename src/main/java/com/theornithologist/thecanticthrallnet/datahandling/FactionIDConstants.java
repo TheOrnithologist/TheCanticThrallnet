@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum FactionIDConstants {
     AoI("Agents of the Imperium"),
-    AM("Astra Militaurm"),
+    AM("Astra Militarum"),
     GC("Genestealer Cults"),
     NEC("Necrons"),
     AE("Aeldari"),
@@ -13,7 +13,7 @@ public enum FactionIDConstants {
     ORK("Orks"),
     UN("Unaligned Forces"),
     GK("Grey Knights"),
-    TAU("T’au Empire"),
+    TAU("T'au Empire"),
     LoV("Leagues of Votann"),
     AdM("Adeptus Mechanicus"),
     TS("Thousand Sons"),
