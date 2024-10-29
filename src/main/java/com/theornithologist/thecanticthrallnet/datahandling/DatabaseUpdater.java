@@ -72,6 +72,54 @@ public class DatabaseUpdater {
         }
     }
 
+    public void clearTable() {
+        String abilities = "DELETE from Abilities";
+        String datasheets = "DELETE from Datasheets";
+        String datasheetAbilities = "DELETE from Datasheets_abilities";
+        String datasheetDetachmentAbilities = "DELETE from Datasheets_detachment_abilities";
+        String datasheetEnhancements = "DELETE from Datasheets_enhancements";
+        String datasheetKeywords = "DELETE from Datasheets_keywords";
+        String datasheetLeader = "DELETE from Datasheets_leader";
+        String datasheetModel = "DELETE from Datasheets_models";
+        String datasheetModelsCost = "DELETE from Datasheets_models_cost";
+        String datasheetOptions = "DELETE from Datasheets_options";
+        String datasheetStratagems = "DELETE from Datasheets_stratagems";
+        String datasheetUnitComposition = "DELETE from Datasheets_unit_composition";
+        String datasheetWargear = "DELETE from Datasheets_wargear";
+        String detachmentAbilities = "DELETE from Detachment_abilities";
+        String enhancements = "DELETE from Enhancements";
+        String factions = "DELETE from Factions";
+        String stratagems = "DELETE from Stratagems";
+        try {
+            var conn = DriverManager.getConnection(URL);
+            var stmt = conn.createStatement();
+            stmt.addBatch(abilities);
+            stmt.addBatch(datasheets);
+            stmt.addBatch(datasheetAbilities);
+            stmt.addBatch(datasheetDetachmentAbilities);
+            stmt.addBatch(datasheetEnhancements);
+            stmt.addBatch(datasheetKeywords);
+            stmt.addBatch(datasheetLeader);
+            stmt.addBatch(datasheetModel);
+            stmt.addBatch(datasheetModelsCost);
+            stmt.addBatch(datasheetOptions);
+            stmt.addBatch(datasheetStratagems);
+            stmt.addBatch(datasheetUnitComposition);
+            stmt.addBatch(datasheetWargear);
+            stmt.addBatch(detachmentAbilities);
+            stmt.addBatch(enhancements);
+            stmt.addBatch(factions);
+            stmt.addBatch(stratagems);
+            stmt.executeBatch();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+    }
+
+    public void clearLastUpdate() {
+
+    }
+
     public void fileUpdate() throws IOException {
         dataParser.downloadData(URLConstants.UPDATE_URL.value, FileConstants.UPDATE_FILE.value);
         List<FileConstants> fileConstants = Arrays.asList(FileConstants.values());
