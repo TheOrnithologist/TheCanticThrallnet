@@ -33,9 +33,16 @@ public class HomeController {
             @Override
             protected Void call() throws Exception {
                 databaseUpdater.fileUpdate();
+                System.out.println("files updates");
                 dataParser.trimCSV();
+                System.out.println("CSV trimmed");
                 databaseUpdater.populateUpdateTime();
+                System.out.println("update time populated");
                 databaseUpdater.populateData();
+                System.out.println("data populated");
+                updateButton.setDisable(false);
+                progressBar.setVisible(false);
+                topBar.setDisable(false);
                 return null;
             }
         };
@@ -53,8 +60,6 @@ public class HomeController {
         progressBar.progressProperty().bind(progress.progressProperty());
         new Thread(progress).start();
         new Thread(initialize).start();
-        updateButton.setDisable(false);
-        progressBar.setVisible(false);
     }
 
     public void factionButton(ActionEvent e) throws IOException {
