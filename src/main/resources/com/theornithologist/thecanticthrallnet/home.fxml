@@ -19,7 +19,7 @@
                         <Button fx:id="AC" text="Adeptus Custodes" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="AdM" text="Adeptus Mechanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="AS" text="Adepta Sororitas" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="TL" text="Adeptus Titanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+<!--                        <Button fx:id="TL" text="Adeptus Titanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>-->
                         <Button fx:id="AoI" text="Agents of the Imperium" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="AM" text="Astra Militarum" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
                         <Button fx:id="GK" text="Grey Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
