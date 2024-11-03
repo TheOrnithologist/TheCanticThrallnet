@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="TheCanticThrallnet">
+    <output-path>$PROJECT_DIR$/out/artifacts/TheCanticThrallnet</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="com.theornithologist.thecanticthrallnet.CanticThrallnet" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="TheCanticThrallnet" />
+        <option name="vendor" value="" />
+        <option name="version" value="0.1" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="TheCanticThrallnet.jar">
+        <element id="module-output" name="TheCanticThrallnet" />
+      </element>
+    </root>
+  </artifact>
+</component>
