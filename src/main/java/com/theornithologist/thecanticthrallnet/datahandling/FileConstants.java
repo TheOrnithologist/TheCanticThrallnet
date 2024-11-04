@@ -2,7 +2,8 @@ package com.theornithologist.thecanticthrallnet.datahandling;
 
 public enum FileConstants {
 
-    DATA_ROOT("src/main/resources/com/theornithologist/thecanticthrallnet/data/"), 
+//    DATA_ROOT("src/main/resources/com/theornithologist/thecanticthrallnet/data/"),
+    DATA_ROOT("C:\\Program Files\\CanticThrallnet"),
     FACTIONS_FILE("Factions.csv"), 
     DATASHEETS_FILE("Datasheets.csv"), 
     DATASHEET_ABILITIES_FILE("Datasheets_abilities.csv"),

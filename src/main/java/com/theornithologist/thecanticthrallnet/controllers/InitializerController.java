@@ -45,7 +45,7 @@ public class InitializerController {
                 System.out.println("update time updated");
                 databaseUpdater.populateData();
                 System.out.println("data populated");
-                File firstLaunch = new File("launchCheck.txt");
+                File firstLaunch = new File("C:\\Program Files\\CanticThrallnet\\launchCheck.txt");
                 firstLaunch.createNewFile();
                 System.out.println("file created");
                 return null;
