@@ -14,12 +14,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.theornithologist.thecanticthrallnet.datahandling.FileConstants.DATA_ROOT;
+
 public class DatabaseUpdater {
 
     DataParser dataParser = new DataParser();
-
     private static final CSVFormat FORMAT = CSVFormat.Builder.create().setDelimiter('|').setHeader().setSkipHeaderRecord(true).build();
-    private static final String URL = "jdbc:sqlite:src/main/resources/com/theornithologist/thecanticthrallnet/data/munitorum.db";
+    private static final String URL = "jdbc:sqlite:" + DATA_ROOT.value + "\\munitorum.db";
 
     public DatabaseUpdater() throws SQLException {
     }
@@ -38,7 +39,7 @@ public class DatabaseUpdater {
         FileConstants[] files = FileConstants.values();
         List<String> tableStrings = new ArrayList<>();
         for (FileConstants file : files) {
-            if (file != FileConstants.DATA_ROOT) {
+            if (file != DATA_ROOT) {
                 tableStrings.add(generateTableString(file));
                 System.out.println(generateTableString(file));
             }
@@ -125,7 +126,7 @@ public class DatabaseUpdater {
         List<FileConstants> fileConstants = Arrays.asList(FileConstants.values());
         List<FileConstants> fileConstantsNoRoot = new ArrayList<>();
         for (FileConstants constant : fileConstants) {
-            if (!constant.equals(FileConstants.DATA_ROOT)) {
+            if (!constant.equals(DATA_ROOT)) {
                 fileConstantsNoRoot.add(constant);
             }
         }
@@ -146,8 +147,8 @@ public class DatabaseUpdater {
             tableNames.add(tableName);
         }
         for (FileConstants file : files) {
-            if (file != FileConstants.DATA_ROOT && file != FileConstants.UPDATE_FILE) {
-                Reader reader = Files.newBufferedReader(Paths.get(FileConstants.DATA_ROOT.value + file.value));
+            if (file != DATA_ROOT && file != FileConstants.UPDATE_FILE) {
+                Reader reader = Files.newBufferedReader(Paths.get(DATA_ROOT.value + file.value));
                 Iterable<CSVRecord> records = FORMAT.parse(reader);
                 String[] headers = dataParser.getFileColumn(file);
                     try (var conn = DriverManager.getConnection(URL);

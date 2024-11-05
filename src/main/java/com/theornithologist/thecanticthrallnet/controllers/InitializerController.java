@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static com.theornithologist.thecanticthrallnet.datahandling.FileConstants.DATA_ROOT;
+
 public class InitializerController {
     @FXML
     private Button intializeButton;
@@ -45,7 +47,7 @@ public class InitializerController {
                 System.out.println("update time updated");
                 databaseUpdater.populateData();
                 System.out.println("data populated");
-                File firstLaunch = new File("launchCheck.txt");
+                File firstLaunch = new File(DATA_ROOT.value + "\\launchCheck.txt");
                 firstLaunch.createNewFile();
                 System.out.println("file created");
                 return null;
