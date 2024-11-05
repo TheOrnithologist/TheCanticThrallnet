@@ -19,7 +19,12 @@ public class CanticThrallnet extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        File firstLaunch = new File("C:\\Program Files\\CaticThrallnet\\launchCheck.txt");
+        String path = System.getProperty("user.home") +"/Documents/CanticThrallnet";
+        File folder = new File(path);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        File firstLaunch = new File(path + "/launchCheck.txt");
         if (firstLaunch.exists()) {
             sceneRoot = "home.fxml";
         } else {
