@@ -5,6 +5,7 @@ module com.theornithologist.thecanticthrallnet {
     requires org.apache.commons.csv;
     requires java.desktop;
     requires javafx.web;
+    requires org.apache.commons.io;
 
 
     opens com.theornithologist.thecanticthrallnet to javafx.fxml;
