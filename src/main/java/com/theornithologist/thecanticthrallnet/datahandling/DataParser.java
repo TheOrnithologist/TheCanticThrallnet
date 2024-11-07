@@ -1,7 +1,11 @@
 package com.theornithologist.thecanticthrallnet.datahandling;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+
 import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,8 +53,8 @@ public class DataParser {
     }
 
     public String[] getFileColumn(FileConstants file) throws IOException {
-        String fileRaw = Files.readString(Paths.get(FileConstants.DATA_ROOT.value + file.value));
-        String[] columns = fileRaw.split("\\r\\n");
-        return columns[0].split("\\|");
+        CSVParser parser = new CSVParser(new FileReader(FileConstants.DATA_ROOT.value + file.value, StandardCharsets.UTF_8), CSVFormat.Builder.create().setDelimiter('|').setHeader().setSkipHeaderRecord(false).build());
+        List <String> headers = parser.getHeaderNames();
+        return headers.toArray(new String[0]);
     }
 }

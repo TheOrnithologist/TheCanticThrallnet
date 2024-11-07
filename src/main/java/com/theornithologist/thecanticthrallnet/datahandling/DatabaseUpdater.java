@@ -2,11 +2,13 @@ package com.theornithologist.thecanticthrallnet.datahandling;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.io.input.BOMInputStream;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -41,14 +43,12 @@ public class DatabaseUpdater {
         for (FileConstants file : files) {
             if (file != DATA_ROOT) {
                 tableStrings.add(generateTableString(file));
-                System.out.println(generateTableString(file));
             }
         }
         for (String table : tableStrings) {
             try (var conn = DriverManager.getConnection(URL)) {
                 var stmt = conn.createStatement();
                 stmt.execute(table);
-                System.out.println("table added");
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -148,7 +148,10 @@ public class DatabaseUpdater {
         }
         for (FileConstants file : files) {
             if (file != DATA_ROOT && file != FileConstants.UPDATE_FILE) {
-                Reader reader = Files.newBufferedReader(Paths.get(DATA_ROOT.value + file.value));
+                String filePath = FileConstants.DATA_ROOT.value + file.value;
+                InputStream fileStream = new FileInputStream(filePath);
+                BOMInputStream bomInputStream = new BOMInputStream(fileStream);
+                InputStreamReader reader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
                 Iterable<CSVRecord> records = FORMAT.parse(reader);
                 String[] headers = dataParser.getFileColumn(file);
                     try (var conn = DriverManager.getConnection(URL);
@@ -163,7 +166,6 @@ public class DatabaseUpdater {
                         System.err.println(e.getMessage());
                     }
             }
-            System.out.println("table updated");
         }
 
     }

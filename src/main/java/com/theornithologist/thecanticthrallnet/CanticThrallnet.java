@@ -1,5 +1,6 @@
 package com.theornithologist.thecanticthrallnet;
 
+import com.theornithologist.thecanticthrallnet.datahandling.FileConstants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.sql.SQLException;
 
@@ -19,12 +22,18 @@ public class CanticThrallnet extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        String path = System.getProperty("user.home") +"/Documents/CanticThrallnet";
-        File folder = new File(path);
-        if (!folder.exists()) {
-            folder.mkdir();
+        File dir = new File(FileConstants.DATA_ROOT.value);
+        if (!dir.exists()) {
+            dir.mkdir();
         }
-        File firstLaunch = new File(path + "/launchCheck.txt");
+        try {
+            PrintStream errorStream = new PrintStream(new FileOutputStream(FileConstants.DATA_ROOT.value + "log.txt"));
+            System.setErr(errorStream);
+            System.setOut(errorStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        File firstLaunch = new File(FileConstants.DATA_ROOT.value + "launchCheck.txt");
         if (firstLaunch.exists()) {
             sceneRoot = "home.fxml";
         } else {

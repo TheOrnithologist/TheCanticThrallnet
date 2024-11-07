@@ -36,20 +36,13 @@ public class InitializerController {
             @Override
             protected Void call() throws Exception {
                 databaseUpdater.fileUpdate();
-                System.out.println("Files downloaded");
-                databaseUpdater.generateDB();
-                System.out.println("db made");
-                databaseUpdater.initializeTable();
-                System.out.println("tables made");
                 dataParser.trimCSV();
-                System.out.println("CSVs trimmer");
+                databaseUpdater.generateDB();
+                databaseUpdater.initializeTable();
                 databaseUpdater.populateUpdateTime();
-                System.out.println("update time updated");
                 databaseUpdater.populateData();
-                System.out.println("data populated");
                 File firstLaunch = new File(DATA_ROOT.value + "\\launchCheck.txt");
                 firstLaunch.createNewFile();
-                System.out.println("file created");
                 return null;
             }
 
