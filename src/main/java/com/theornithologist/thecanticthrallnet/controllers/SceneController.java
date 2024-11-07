@@ -34,6 +34,5 @@ public class SceneController {
         String factionParsed = faction.value;
         ActiveFaction activeFaction = ActiveFaction.getInstance();
         activeFaction.setFactionName(factionParsed);
-        System.out.println(factionSelected);
     }
 }

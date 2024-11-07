@@ -29,6 +29,7 @@ public class CanticThrallnet extends Application {
         try {
             PrintStream errorStream = new PrintStream(new FileOutputStream(FileConstants.DATA_ROOT.value + "log.txt"));
             System.setErr(errorStream);
+            System.setOut(errorStream);
         } catch (Exception e) {
             e.printStackTrace();
         }

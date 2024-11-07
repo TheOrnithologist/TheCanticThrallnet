@@ -69,8 +69,6 @@ public class ActiveFaction {
     }
 
     public void setDetachments() throws SQLException {
-        System.out.println(factionName);
-        System.out.println(FactionIDConstants.fromValue(factionName));
         String factionValue = FactionIDConstants.fromValue(factionName).toString();
         ResultSet rs = factionQuery.getDetachment(factionValue);
         List<Detachment> detachmentList = new ArrayList<>();

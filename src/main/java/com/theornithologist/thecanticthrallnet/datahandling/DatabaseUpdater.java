@@ -43,14 +43,12 @@ public class DatabaseUpdater {
         for (FileConstants file : files) {
             if (file != DATA_ROOT) {
                 tableStrings.add(generateTableString(file));
-                System.out.println(generateTableString(file));
             }
         }
         for (String table : tableStrings) {
             try (var conn = DriverManager.getConnection(URL)) {
                 var stmt = conn.createStatement();
                 stmt.execute(table);
-                System.out.println("table added");
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -168,7 +166,6 @@ public class DatabaseUpdater {
                         System.err.println(e.getMessage());
                     }
             }
-            System.out.println("table updated");
         }
 
     }
