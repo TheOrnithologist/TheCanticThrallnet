@@ -17,15 +17,15 @@ public class DataParser {
 
     public void downloadData(String url, String filename) throws IOException {
         BufferedInputStream input = new BufferedInputStream(new URL(url).openStream());
-        Files.copy(input, Path.of(FileConstants.DATA_ROOT.value + filename), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(input, Path.of(FileConstants.DataRoot() + filename), StandardCopyOption.REPLACE_EXISTING);
     }
 
     public void trimCSV() {
         List<FileConstants> files = Arrays.asList(FileConstants.values());
         for (FileConstants file : files) {
-            if (file != FileConstants.DATA_ROOT) {
-                File path = new File(FileConstants.DATA_ROOT.value + file.value);
-                File tmp = new File(FileConstants.DATA_ROOT.value + "tmp" + file.value);
+            if (file.value != FileConstants.DataRoot()) {
+                File path = new File(FileConstants.DataRoot() + file.value);
+                File tmp = new File(FileConstants.DataRoot() + "tmp" + file.value);
                 try (BufferedReader reader = new BufferedReader(new FileReader(path));
                      BufferedWriter writer = new BufferedWriter(new FileWriter(tmp))) {
                     String line;
@@ -45,15 +45,22 @@ public class DataParser {
     }
 
     public String parseLastUpdated() throws IOException {
-        String lastUpdateRaw = Files.readString(Paths.get(FileConstants.DATA_ROOT.value + FileConstants.UPDATE_FILE.value));
-        lastUpdateRaw = lastUpdateRaw.replaceAll("\r\n", "|");
+        String lastUpdateRaw = Files.readString(Paths.get(FileConstants.DataRoot() + FileConstants.UPDATE_FILE.value));
+        if (FileConstants.IsWindows())
+        {
+            lastUpdateRaw = lastUpdateRaw.replaceAll("\r\n", "|");
+        }
+        else
+        {
+            lastUpdateRaw = lastUpdateRaw.replaceAll("\n", "|");
+        }
         lastUpdateRaw = lastUpdateRaw.replaceAll("\\s","T");
         String[] lastUpdate = lastUpdateRaw.split("\\|");
         return lastUpdate[1];
     }
 
     public String[] getFileColumn(FileConstants file) throws IOException {
-        CSVParser parser = new CSVParser(new FileReader(FileConstants.DATA_ROOT.value + file.value, StandardCharsets.UTF_8), CSVFormat.Builder.create().setDelimiter('|').setHeader().setSkipHeaderRecord(false).build());
+        CSVParser parser = new CSVParser(new FileReader(FileConstants.DataRoot() + file.value, StandardCharsets.UTF_8), CSVFormat.Builder.create().setDelimiter('|').setHeader().setSkipHeaderRecord(false).build());
         List <String> headers = parser.getHeaderNames();
         return headers.toArray(new String[0]);
     }

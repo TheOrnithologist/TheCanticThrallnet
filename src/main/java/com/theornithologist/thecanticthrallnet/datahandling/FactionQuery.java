@@ -4,11 +4,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.theornithologist.thecanticthrallnet.datahandling.FileConstants.DATA_ROOT;
-
 public class FactionQuery {
 
-    private static final String URL = "jdbc:sqlite:" + DATA_ROOT.value + "\\munitorum.db";
+    private static final String URL = "jdbc:sqlite:" + FileConstants.DataRoot() + "munitorum.db";
 
     public String getArmyRuleName(String faction) {
         String sql = "SELECT name FROM Abilities where faction_id ='" + faction + "'";

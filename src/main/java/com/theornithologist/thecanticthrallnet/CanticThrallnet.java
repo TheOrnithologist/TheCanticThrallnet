@@ -22,18 +22,18 @@ public class CanticThrallnet extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        File dir = new File(FileConstants.DATA_ROOT.value);
+        File dir = new File(FileConstants.DataRoot());
         if (!dir.exists()) {
             dir.mkdir();
         }
         try {
-            PrintStream errorStream = new PrintStream(new FileOutputStream(FileConstants.DATA_ROOT.value + "log.txt"));
+            PrintStream errorStream = new PrintStream(new FileOutputStream(FileConstants.DataRoot() + "log.txt"));
             System.setErr(errorStream);
             System.setOut(errorStream);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        File firstLaunch = new File(FileConstants.DATA_ROOT.value + "launchCheck.txt");
+        File firstLaunch = new File(FileConstants.DataRoot() + "launchCheck.txt");
         if (firstLaunch.exists()) {
             sceneRoot = "home.fxml";
         } else {

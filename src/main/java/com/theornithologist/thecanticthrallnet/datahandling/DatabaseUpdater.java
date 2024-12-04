@@ -16,13 +16,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.theornithologist.thecanticthrallnet.datahandling.FileConstants.DATA_ROOT;
-
 public class DatabaseUpdater {
 
     DataParser dataParser = new DataParser();
     private static final CSVFormat FORMAT = CSVFormat.Builder.create().setDelimiter('|').setHeader().setSkipHeaderRecord(true).build();
-    private static final String URL = "jdbc:sqlite:" + DATA_ROOT.value + "\\munitorum.db";
+    private static final String URL = "jdbc:sqlite:" + FileConstants.DataRoot() + "munitorum.db";
 
     public DatabaseUpdater() throws SQLException {
     }
@@ -41,7 +39,7 @@ public class DatabaseUpdater {
         FileConstants[] files = FileConstants.values();
         List<String> tableStrings = new ArrayList<>();
         for (FileConstants file : files) {
-            if (file != DATA_ROOT) {
+            if (file.value != FileConstants.DataRoot()) {
                 tableStrings.add(generateTableString(file));
             }
         }
@@ -126,7 +124,7 @@ public class DatabaseUpdater {
         List<FileConstants> fileConstants = Arrays.asList(FileConstants.values());
         List<FileConstants> fileConstantsNoRoot = new ArrayList<>();
         for (FileConstants constant : fileConstants) {
-            if (!constant.equals(DATA_ROOT)) {
+            if (!constant.value.equals(FileConstants.DataRoot())) {
                 fileConstantsNoRoot.add(constant);
             }
         }
@@ -147,8 +145,8 @@ public class DatabaseUpdater {
             tableNames.add(tableName);
         }
         for (FileConstants file : files) {
-            if (file != DATA_ROOT && file != FileConstants.UPDATE_FILE) {
-                String filePath = FileConstants.DATA_ROOT.value + file.value;
+            if (file.value != FileConstants.DataRoot() && file != FileConstants.UPDATE_FILE) {
+                String filePath = FileConstants.DataRoot() + file.value;
                 InputStream fileStream = new FileInputStream(filePath);
                 BOMInputStream bomInputStream = new BOMInputStream(fileStream);
                 InputStreamReader reader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
