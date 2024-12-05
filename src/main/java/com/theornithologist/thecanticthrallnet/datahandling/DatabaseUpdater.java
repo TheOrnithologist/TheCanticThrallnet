@@ -152,17 +152,29 @@ public class DatabaseUpdater {
                 InputStreamReader reader = new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
                 Iterable<CSVRecord> records = FORMAT.parse(reader);
                 String[] headers = dataParser.getFileColumn(file);
-                    try (var conn = DriverManager.getConnection(URL);
-                         var pstmt = conn.prepareStatement(generateDataString(file))) {
+                try (var conn = DriverManager.getConnection(URL);)
+                {
+                    conn.setAutoCommit(false);
+                    try (var pstmt = conn.prepareStatement(generateDataString(file))) {
                         for (CSVRecord record : records) {
                             for (int i = 0; i < headers.length; i++) {
                                 pstmt.setString(i+1, record.get(i));
                             }
-                            pstmt.execute();
+                            pstmt.addBatch();
                         }
+                        pstmt.executeBatch();
                     } catch (SQLException e) {
                         System.err.println(e.getMessage());
                     }
+                    finally
+                    {
+                        conn.commit();
+                    }
+                }
+                catch (SQLException e)
+                {
+                    System.err.println(e.getMessage());
+                }
             }
         }
 

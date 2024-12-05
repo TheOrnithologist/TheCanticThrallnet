@@ -62,6 +62,8 @@ public class DataParser {
     public String[] getFileColumn(FileConstants file) throws IOException {
         CSVParser parser = new CSVParser(new FileReader(FileConstants.DataRoot() + file.value, StandardCharsets.UTF_8), CSVFormat.Builder.create().setDelimiter('|').setHeader().setSkipHeaderRecord(false).build());
         List <String> headers = parser.getHeaderNames();
-        return headers.toArray(new String[0]);
+        var results = headers.toArray(new String[0]);
+        parser.close();
+        return results; 
     }
 }
