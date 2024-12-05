@@ -3,7 +3,7 @@ package com.theornithologist.thecanticthrallnet.datahandling;
 public enum FileConstants {
 
 //    DATA_ROOT("src/main/resources/com/theornithologist/thecanticthrallnet/data/"),
-    DATA_ROOT(System.getProperty("user.home") + "\\Documents\\CanticThrallnet\\"),
+//    DATA_ROOT(System.getProperty("user.home") + "\\Documents\\CanticThrallnet\\"),
     FACTIONS_FILE("Factions.csv"), 
     DATASHEETS_FILE("Datasheets.csv"), 
     DATASHEET_ABILITIES_FILE("Datasheets_abilities.csv"),
@@ -24,8 +24,24 @@ public enum FileConstants {
     UPDATE_FILE("Last_update.csv");
 
     public final String value;
+    public static boolean isWindows;
 
     FileConstants(String value) {
         this.value = value;
+    }
+
+    public static String DataRoot() {
+        var os = System.getProperty("os.name");
+        if (os == "Windows") {
+            isWindows = true;
+            return System.getProperty("user.home") + "\\Documents\\CanticThrallnet\\";
+        }
+
+        isWindows = false;
+        return System.getProperty("user.home") + "//Documents//CanticThrallnet//";
+    }
+
+    public static boolean IsWindows() {
+        return isWindows;
     }
 }

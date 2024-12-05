@@ -3,6 +3,7 @@ package com.theornithologist.thecanticthrallnet.controllers;
 import com.theornithologist.thecanticthrallnet.CanticThrallnet;
 import com.theornithologist.thecanticthrallnet.datahandling.DataParser;
 import com.theornithologist.thecanticthrallnet.datahandling.DatabaseUpdater;
+import com.theornithologist.thecanticthrallnet.datahandling.FileConstants;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -16,8 +17,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-
-import static com.theornithologist.thecanticthrallnet.datahandling.FileConstants.DATA_ROOT;
 
 public class InitializerController {
     @FXML
@@ -41,7 +40,7 @@ public class InitializerController {
                 databaseUpdater.initializeTable();
                 databaseUpdater.populateUpdateTime();
                 databaseUpdater.populateData();
-                File firstLaunch = new File(DATA_ROOT.value + "\\launchCheck.txt");
+                File firstLaunch = new File(FileConstants.DataRoot() + "\\launchCheck.txt");
                 firstLaunch.createNewFile();
                 return null;
             }
