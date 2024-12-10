@@ -10,7 +10,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class HomeController {
     @FXML
@@ -22,7 +21,7 @@ public class HomeController {
 
     SceneController sceneController = new SceneController();
 
-    public void onUpdate() throws SQLException, IOException {
+    public void onUpdate() {
         DatabaseUpdater databaseUpdater = new DatabaseUpdater();
         DataParser dataParser = new DataParser();
         databaseUpdater.clearTable();
@@ -43,7 +42,7 @@ public class HomeController {
             }
         };
 
-        Task<Void> progress = new Task<Void>() {
+        Task<Void> progress = new Task<>() {
             @Override
             protected Void call() throws Exception {
                 for (int i = 1; i <= 100; i++) {

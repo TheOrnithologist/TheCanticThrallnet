@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 
 
 public class CanticThrallnet extends Application {
@@ -23,15 +24,19 @@ public class CanticThrallnet extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         File dir = new File(FileConstants.DataRoot());
-        if (!dir.exists()) {
-            dir.mkdir();
-        }
+
         try {
             PrintStream errorStream = new PrintStream(new FileOutputStream(FileConstants.DataRoot() + "log.txt"));
             System.setErr(errorStream);
             System.setOut(errorStream);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        if (!dir.exists()) {
+            boolean created = dir.mkdir();
+            if (!created) {
+                System.err.println("Directory creation failed.");
+            }
         }
         File firstLaunch = new File(FileConstants.DataRoot() + "launchCheck.txt");
         if (firstLaunch.exists()) {
@@ -43,7 +48,7 @@ public class CanticThrallnet extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
         URL url = getClass().getResource("icons/CanticThrallnet256.png");
         Image icon = new Image(String.valueOf(url));
-        scene.getStylesheets().add(CanticThrallnet.class.getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(CanticThrallnet.class.getResource("styles.css")).toExternalForm());
         stage.getIcons().add(icon);
         scene.setFill(Color.SLATEGRAY);
         stage.setTitle("Cantic Thrallnet");

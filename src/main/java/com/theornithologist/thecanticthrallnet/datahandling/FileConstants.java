@@ -32,7 +32,7 @@ public enum FileConstants {
 
     public static String DataRoot() {
         var os = System.getProperty("os.name");
-        if (os == "Windows") {
+        if (os.equals("Windows")) {
             isWindows = true;
             return System.getProperty("user.home") + "\\Documents\\CanticThrallnet\\";
         }

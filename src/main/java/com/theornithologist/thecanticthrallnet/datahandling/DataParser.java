@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
 import java.util.List;
 
 public class DataParser {
@@ -21,7 +20,7 @@ public class DataParser {
     }
 
     public void trimCSV() {
-        List<FileConstants> files = Arrays.asList(FileConstants.values());
+        FileConstants[] files = FileConstants.values();
         for (FileConstants file : files) {
             if (!file.value.equals(FileConstants.DataRoot())) {
                 File path = new File(FileConstants.DataRoot() + file.value);
@@ -38,7 +37,10 @@ public class DataParser {
                     e.printStackTrace();
                 }
                 if (path.delete()) {
-                    tmp.renameTo(path);
+                    boolean renamed = tmp.renameTo(path);
+                    if (!renamed) {
+                        System.err.println("CSV not successfully renamed.");
+                    }
                 }
             }
         }

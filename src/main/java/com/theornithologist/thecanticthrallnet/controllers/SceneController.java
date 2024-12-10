@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SceneController {
 
@@ -19,10 +20,10 @@ public class SceneController {
     Scene scene;
 
     public void buttonAction(ActionEvent e, String sceneString) throws IOException {
-        Parent root = FXMLLoader.load(CanticThrallnet.class.getResource(sceneString));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(CanticThrallnet.class.getResource(sceneString)));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root, 1000, 1000);
-        scene.getStylesheets().add(CanticThrallnet.class.getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(CanticThrallnet.class.getResource("styles.css")).toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -31,6 +32,7 @@ public class SceneController {
         Button btn = (Button)e.getSource();
         String factionSelected = btn.getId();
         FactionIDConstants faction = FactionIDConstants.fromKey(factionSelected);
+        assert faction != null;
         String factionParsed = faction.value;
         ActiveFaction activeFaction = ActiveFaction.getInstance();
         activeFaction.setFactionName(factionParsed);
