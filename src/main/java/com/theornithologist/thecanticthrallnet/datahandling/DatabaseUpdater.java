@@ -22,7 +22,7 @@ public class DatabaseUpdater {
     private static final CSVFormat FORMAT = CSVFormat.Builder.create().setDelimiter('|').setHeader().setSkipHeaderRecord(true).build();
     private static final String URL = "jdbc:sqlite:" + FileConstants.DataRoot() + "\\munitorum.db";
 
-    public DatabaseUpdater() throws SQLException {
+    public DatabaseUpdater() {
     }
 
     public void generateDB() {
@@ -64,11 +64,7 @@ public class DatabaseUpdater {
             System.out.println(e.getMessage());
         }
         LocalDateTime newDate = LocalDateTime.parse(dataParser.parseLastUpdated());
-        if (newDate.isAfter(currentDate)) {
-            return true;
-        } else {
-            return false;
-        }
+        return newDate.isAfter(currentDate);
     }
 
     public void clearTable() {
@@ -111,7 +107,7 @@ public class DatabaseUpdater {
             stmt.addBatch(stratagems);
             stmt.executeBatch();
         } catch (SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
     }
 
@@ -133,13 +129,7 @@ public class DatabaseUpdater {
     }
 
     public void populateData() throws IOException {
-        List<FileConstants> files = Arrays.asList(FileConstants.values());
-        List<String> tableNames = new ArrayList<>();
-        for (FileConstants file : files) {
-            String[] fileName = file.value.split("\\.");
-            String tableName = fileName[0];
-            tableNames.add(tableName);
-        }
+        FileConstants[] files = FileConstants.values();
         for (FileConstants file : files) {
             if (!file.value.equals(FileConstants.DataRoot()) && file != FileConstants.UPDATE_FILE) {
                 String filePath = FileConstants.DataRoot() + file.value;
@@ -179,7 +169,7 @@ public class DatabaseUpdater {
             pstmt.setString(1, dataParser.parseLastUpdated());
             pstmt.executeUpdate();
         } catch (SQLException | IOException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
     }
 
@@ -196,9 +186,9 @@ public class DatabaseUpdater {
                 type = "TEXT";
             }
             if (i == columns.length - 1) {
-                tableString.append("   " + columns[i] + " " + type + ");");
+                tableString.append("   ").append(columns[i]).append(" ").append(type).append(");");
             } else {
-                tableString.append("   " + columns[i] + " " + type + ",");
+                tableString.append("   ").append(columns[i]).append(" ").append(type).append(",");
             }
         }
         return tableString.toString();
@@ -211,9 +201,9 @@ public class DatabaseUpdater {
         String[] columns = dataParser.getFileColumn(file);
         for(int i = 0; i < columns.length; i++) {
             if (i == columns.length - 1) {
-                dataString.append(columns[i]+")");
+                dataString.append(columns[i]).append(")");
             } else {
-                dataString.append(columns[i] + ",");
+                dataString.append(columns[i]).append(",");
             }
         }
         dataString.append(" VALUES (");

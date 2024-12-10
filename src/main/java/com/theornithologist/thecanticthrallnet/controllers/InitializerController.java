@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.Objects;
 
 public class InitializerController {
     @FXML
@@ -25,7 +25,7 @@ public class InitializerController {
     private ProgressBar progressBar;
 
     @FXML
-    protected void onButtonClick() throws IOException, SQLException {
+    protected void onButtonClick() {
         DataParser dataParser = new DataParser();
         DatabaseUpdater databaseUpdater = new DatabaseUpdater();
         intializeButton.setVisible(false);
@@ -41,7 +41,10 @@ public class InitializerController {
                 databaseUpdater.populateUpdateTime();
                 databaseUpdater.populateData();
                 File firstLaunch = new File(FileConstants.DataRoot() + "\\launchCheck.txt");
-                firstLaunch.createNewFile();
+                boolean created = firstLaunch.createNewFile();
+                if (!created) {
+                    System.err.println("Launch check file not created.");
+                }
                 return null;
             }
 
@@ -50,11 +53,11 @@ public class InitializerController {
                 super.succeeded();
                 Platform.runLater(() -> {
                     try {
-                        Parent root = FXMLLoader.load(CanticThrallnet.class.getResource("home.fxml"));
+                        Parent root = FXMLLoader.load(Objects.requireNonNull(CanticThrallnet.class.getResource("home.fxml")));
                         Stage stage = (Stage) (progressBar.getScene().getWindow());
                         Scene scene;
                         scene = new Scene(root, 1000, 1000);
-                        scene.getStylesheets().add(CanticThrallnet.class.getResource("styles.css").toExternalForm());
+                        scene.getStylesheets().add(Objects.requireNonNull(CanticThrallnet.class.getResource("styles.css")).toExternalForm());
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException e) {
@@ -72,13 +75,13 @@ public class InitializerController {
         };
 
 
-        Task<Void> progress = new Task<Void>() {
+        Task<Void> progress = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                  for (int i = 1; i <= 100; i++) {
-                      updateProgress(i, 100);
-                      Thread.sleep(2000);
-                  }
+                for (int i = 1; i <= 100; i++) {
+                    updateProgress(i, 100);
+                    Thread.sleep(2000);
+                }
                 return null;
             }
         };

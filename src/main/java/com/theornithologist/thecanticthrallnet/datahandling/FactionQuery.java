@@ -15,7 +15,7 @@ public class FactionQuery {
              ResultSet rs = stmt.executeQuery()){
             return rs.getString(1);
         } catch (SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
         return null;
     }
@@ -27,7 +27,7 @@ public class FactionQuery {
             ResultSet rs = stmt.executeQuery()){
             return rs.getString(1);
         } catch (SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
         return null;
     }
@@ -39,7 +39,7 @@ public class FactionQuery {
             var stmt = conn.prepareStatement(sql);
             return stmt.executeQuery();
         } catch (SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
         return null;
     }
@@ -51,7 +51,7 @@ public class FactionQuery {
             var stmt = conn.prepareStatement(sql);
             return stmt.executeQuery();
         } catch (SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
         return null;
     }
@@ -63,7 +63,7 @@ public class FactionQuery {
             var stmt = conn.prepareStatement(sql);
             return stmt.executeQuery();
         } catch (SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
         return null;
     }

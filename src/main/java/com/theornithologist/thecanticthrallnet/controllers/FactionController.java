@@ -278,7 +278,7 @@ public class FactionController {
             FXMLLoader loader = new FXMLLoader(CanticThrallnet.class.getResource("datasheetModelCost.fxml"));
             Parent element = loader.load();
             DatasheetModelCostController controller = loader.getController();
-            controller.getModelCount().setText(datasheet.getDatasheetModelCost().get(i).getDescription());
+            controller.getModelCount().setText(datasheet.getDatasheetModelCost().get(i).getDescription() + " ");
             controller.getModelCost().setText(datasheet.getDatasheetModelCost().get(i).getCost());
             cost.getChildren().add(element);
         }
