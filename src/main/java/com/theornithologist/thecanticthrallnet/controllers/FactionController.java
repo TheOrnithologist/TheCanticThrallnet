@@ -6,6 +6,7 @@ import com.theornithologist.thecanticthrallnet.factionobjects.datasheets.Datashe
 import com.theornithologist.thecanticthrallnet.factionobjects.detachments.Detachment;
 import com.theornithologist.thecanticthrallnet.factionobjects.detachments.Enhancement;
 import com.theornithologist.thecanticthrallnet.factionobjects.detachments.Stratagem;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -123,19 +124,41 @@ public class FactionController {
     VBox stratagemHeader;
     @FXML
     VBox enhancementHeader;
+    @FXML
+    BorderPane spinner;
 
     ActiveFaction activeFaction = ActiveFaction.getInstance();
     SceneController sceneController = new SceneController();
 
     public void initialize() throws SQLException, IOException {
-        factionLabel.setText(activeFaction.getFactionName());
-        activeFaction.updateData();
-        armyRuleName.setText(activeFaction.getArmyRuleName());
-        armyRuleBox.getEngine().loadContent(activeFaction.getArmyRule());
-        showDetachments();
-        showStratagems();
-        showEnhancements();
-        showDatasheets();
+        spinner.setVisible(true);
+        Task<Void> initTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    factionLabel.setText(activeFaction.getFactionName());
+                    activeFaction.updateData();
+                    armyRuleName.setText(activeFaction.getArmyRuleName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+        };
+        initTask.setOnSucceeded(event -> {
+            try {
+                armyRuleBox.getEngine().loadContent(activeFaction.getArmyRule());
+                showDetachments();
+                showStratagems();
+                showEnhancements();
+                showDatasheets();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            spinner.setVisible(false);
+        });
+        new Thread(initTask).start();
     }
 
     public void backButton(ActionEvent e) throws IOException {
