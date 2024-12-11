@@ -19,7 +19,7 @@ public class Datasheet {
     String leaderFooter;
     String damagedw;
     String damagedDescription;
-    List datasheetAbilities;
+    List<DatasheetAbility> datasheetAbilities;
     List<DatasheetKeyword> datasheetKeywords;
     List<DatasheetLeader> datasheetLeaders;
     List<DatasheetModel> datasheetModels;
@@ -144,6 +144,7 @@ public class Datasheet {
             for (String id : abilityIDs) {
                 if (ability.getAbilityID().equals(id)) {
                     duplicate = true;
+                    break;
                 }
             }
             if (!duplicate) {

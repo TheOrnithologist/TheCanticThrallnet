@@ -20,7 +20,6 @@ import javafx.scene.layout.*;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class FactionController {
 
@@ -130,11 +129,11 @@ public class FactionController {
     ActiveFaction activeFaction = ActiveFaction.getInstance();
     SceneController sceneController = new SceneController();
 
-    public void initialize() throws SQLException, IOException {
+    public void initialize() {
         spinner.setVisible(true);
-        Task<Void> initTask = new Task<Void>() {
+        Task<Void> initTask = new Task<>() {
             @Override
-            protected Void call() throws Exception {
+            protected Void call() {
                 try {
                     factionLabel.setText(activeFaction.getFactionName());
                     activeFaction.updateData();
@@ -206,7 +205,7 @@ public class FactionController {
         datasheetLegend.getEngine().loadContent(item.getLegend());
         datasheetRole.setText("Role: " + item.getRole());
         populateDatasheetAbilities(item);
-        if (!item.getTransport().equals("")) {
+        if (!item.getTransport().isEmpty()) {
             datasheetTransport.setVisible(true);
             datasheetTransport.setManaged(true);
             datasheetTransport.getEngine().loadContent(item.getTransport());
@@ -214,7 +213,7 @@ public class FactionController {
             datasheetTransport.setVisible(false);
             datasheetTransport.setManaged(false);
         }
-        if (!item.getLeaderFooter().equals("")) {
+        if (!item.getLeaderFooter().isEmpty()) {
             datasheetLeaderRule.setVisible(true);
             datasheetLeaderRule.setManaged(true);
             datasheetLeaderRule.getEngine().loadContent(item.getLeaderFooter());
@@ -222,7 +221,7 @@ public class FactionController {
             datasheetLeaderRule.setVisible(false);
             datasheetLeaderRule.setManaged(false);
         }
-        if (!item.getDamagedw().equals("")) {
+        if (!item.getDamagedw().isEmpty()) {
             datasheetWoundsRange.setVisible(true);
             datasheetWoundsRange.setManaged(true);
             datasheetWoundsRange.setText("Wounds " + item.getDamagedw());
@@ -230,7 +229,7 @@ public class FactionController {
             datasheetWoundsRange.setVisible(false);
             datasheetWoundsRange.setManaged(false);
         }
-        if (!item.getDamagedDescription().equals("")) {
+        if (!item.getDamagedDescription().isEmpty()) {
             datasheetWoundsRules.setVisible(true);
             datasheetWoundsRules.setManaged(true);
             datasheetWoundsRules.getEngine().loadContent(item.getDamagedDescription());
@@ -260,7 +259,7 @@ public class FactionController {
             controller.getStrength().setText(datasheet.getDatasheetWargears().get(i).getStrength());
             controller.getArmorPiercing().setText(datasheet.getDatasheetWargears().get(i).getArmorPiercing());
             controller.getDamage().setText(datasheet.getDatasheetWargears().get(i).getDamage());
-            if (datasheet.getDatasheetWargears().get(i).getDescription().equals("")) {
+            if (datasheet.getDatasheetWargears().get(i).getDescription().isEmpty()) {
                 controller.getModifiers().setManaged(false);
                 controller.getModifiers().setVisible(false);
             } else {
@@ -380,33 +379,33 @@ public class FactionController {
         }
     }
 
-    public void showStratagems() throws IOException {
+    public void showStratagems() {
         Detachment detachment = detachmentList.getSelectionModel().getSelectedItem();
         stratagemList.getItems().setAll(detachment.getStratagems());
         stratagemList.getSelectionModel().selectFirst();
         stratagemListSelect();
     }
 
-    public void showEnhancements() throws IOException {
+    public void showEnhancements() {
         Detachment detachment = detachmentList.getSelectionModel().getSelectedItem();
         enhancementList.getItems().setAll(detachment.getEnhancements());
         enhancementList.getSelectionModel().selectFirst();
         enhancementListSelect();
     }
 
-    public void detachmentButton(ActionEvent e) {
+    public void detachmentButton() {
         armyView.setVisible(false);
         detachmentView.setVisible(true);
         datasheetView.setVisible(false);
     }
 
-    public void armyRuleButton(ActionEvent e) {
+    public void armyRuleButton() {
         detachmentView.setVisible(false);
         armyView.setVisible(true);
         datasheetView.setVisible(false);
     }
 
-    public void datasheetButton(ActionEvent e) {
+    public void datasheetButton() {
         detachmentView.setVisible(false);
         armyView.setVisible(false);
         datasheetView.setVisible(true);
