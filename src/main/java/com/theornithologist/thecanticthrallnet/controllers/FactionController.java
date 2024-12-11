@@ -135,9 +135,7 @@ public class FactionController {
             @Override
             protected Void call() {
                 try {
-                    factionLabel.setText(activeFaction.getFactionName());
                     activeFaction.updateData();
-                    armyRuleName.setText(activeFaction.getArmyRuleName());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -148,6 +146,8 @@ public class FactionController {
         initTask.setOnSucceeded(event -> {
             try {
                 armyRuleBox.getEngine().loadContent(activeFaction.getArmyRule());
+                factionLabel.setText(activeFaction.getFactionName());
+                armyRuleName.setText(activeFaction.getArmyRuleName());
                 showDetachments();
                 showStratagems();
                 showEnhancements();
