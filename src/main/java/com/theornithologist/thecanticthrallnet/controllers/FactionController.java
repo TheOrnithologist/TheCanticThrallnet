@@ -371,7 +371,7 @@ public class FactionController {
             Parent element = loader.load();
             DatasheetAbilityController controller = loader.getController();
             controller.getAbilityName().setText(datasheet.getDatasheetAbilities().get(i).getName());
-            if (!datasheet.getDatasheetAbilities().get(i).getParameter().equals("")) {
+            if (!datasheet.getDatasheetAbilities().get(i).getParameter().isEmpty()) {
                 controller.getAbilityParameter().setText("Parameter: " + datasheet.getDatasheetAbilities().get(i).getParameter());
                 controller.abilityParameter.setVisible(true);
             }

@@ -19,7 +19,7 @@ public class Datasheet {
     String leaderFooter;
     String damagedw;
     String damagedDescription;
-    List<DatasheetAbility> datasheetAbilities;
+    List datasheetAbilities;
     List<DatasheetKeyword> datasheetKeywords;
     List<DatasheetLeader> datasheetLeaders;
     List<DatasheetModel> datasheetModels;
@@ -133,7 +133,27 @@ public class Datasheet {
                     rs.getString("type"),
                     rs.getString("parameter")));
         }
-        datasheetAbilities = abilityList;
+        datasheetAbilities = clearDuplicateAbilities(abilityList);
+    }
+
+    public List<DatasheetAbility> clearDuplicateAbilities(List<DatasheetAbility> list) {
+        List<DatasheetAbility> toRemove = new ArrayList<>();
+        List<String> abilityIDs = new ArrayList<>();
+        for (DatasheetAbility ability : list) {
+            boolean duplicate = false;
+            for (String id : abilityIDs) {
+                if (ability.getAbilityID().equals(id)) {
+                    duplicate = true;
+                }
+            }
+            if (!duplicate) {
+                abilityIDs.add(ability.getAbilityID());
+            } else {
+                toRemove.add(ability);
+            }
+        }
+        list.removeAll(toRemove);
+        return list;
     }
 
     public void setDatasheetKeywords() throws SQLException {
