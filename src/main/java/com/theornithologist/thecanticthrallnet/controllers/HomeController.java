@@ -18,6 +18,8 @@ public class HomeController {
     private ProgressBar progressBar;
     @FXML
     private HBox topBar;
+    @FXML
+    private Button listButton;
 
     SceneController sceneController = new SceneController();
 

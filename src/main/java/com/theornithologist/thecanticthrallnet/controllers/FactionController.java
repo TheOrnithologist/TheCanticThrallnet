@@ -11,10 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.web.WebView;
@@ -42,7 +39,7 @@ public class FactionController {
     @FXML
     VBox armyView;
     @FXML
-    BorderPane detachmentView;
+    VBox detachmentView;
     @FXML
     Label detachmentLabel;
     @FXML
@@ -52,13 +49,13 @@ public class FactionController {
     @FXML
     Button detachmentStratagems;
     @FXML
-    StackPane detachmentRulesView;
+    VBox detachmentRulesView;
     @FXML
-    StackPane detachmentStratagemView;
+    BorderPane detachmentStratagemView;
     @FXML
     ListView<Stratagem> stratagemList;
     @FXML
-    StackPane enhancementView;
+    BorderPane enhancementView;
     @FXML
     Label stratagemID;
     @FXML
@@ -104,9 +101,9 @@ public class FactionController {
     @FXML
     GridPane keywordBox;
     @FXML
-    HBox leaderBox;
+    VBox leaderBox;
     @FXML
-    Label leaderHeader;
+    TitledPane leaderHeader;
     @FXML
     VBox modelStats;
     @FXML
@@ -125,6 +122,8 @@ public class FactionController {
     VBox enhancementHeader;
     @FXML
     BorderPane spinner;
+    @FXML
+    TitledPane optionsButton;
 
     ActiveFaction activeFaction = ActiveFaction.getInstance();
     SceneController sceneController = new SceneController();
@@ -312,6 +311,9 @@ public class FactionController {
             FXMLLoader loader = new FXMLLoader(CanticThrallnet.class.getResource("datasheetModels.fxml"));
             Parent element = loader.load();
             DatasheetModelController controller = loader.getController();
+            if (datasheet.getDatasheetModels().size() > 1) {
+                controller.getModelName().setText(datasheet.getDatasheetModels().get(i).getName());
+            }
             controller.getMovement().setText(datasheet.getDatasheetModels().get(i).getMovement());
             controller.getToughness().setText(datasheet.getDatasheetModels().get(i).getToughness());
             controller.getSave().setText(datasheet.getDatasheetModels().get(i).getSave());
@@ -397,18 +399,21 @@ public class FactionController {
         armyView.setVisible(false);
         detachmentView.setVisible(true);
         datasheetView.setVisible(false);
+        optionsButton.setExpanded(false);
     }
 
     public void armyRuleButton() {
         detachmentView.setVisible(false);
         armyView.setVisible(true);
         datasheetView.setVisible(false);
+        optionsButton.setExpanded(false);
     }
 
     public void datasheetButton() {
         detachmentView.setVisible(false);
         armyView.setVisible(false);
         datasheetView.setVisible(true);
+        optionsButton.setExpanded(false);
     }
 
     public void showDetachments() throws IOException {

@@ -12,88 +12,80 @@
     <VBox>
         <VBox alignment="CENTER">
             <StackPane>
-                <Button fx:id="backButton" text="Back" StackPane.alignment="TOP_LEFT" onAction="#backButton"/>
-                <Label fx:id="factionLabel" text="Faction" StackPane.alignment="CENTER" styleClass="faction_header"/>
+                <Button fx:id="backButton" text="Back" StackPane.alignment="TOP_LEFT" onAction="#backButton" prefWidth="100"/>
+                <Label fx:id="factionLabel" text="Faction"  styleClass="faction_header" StackPane.alignment="CENTER"/>
             </StackPane>
-            <Separator/>
-            <HBox alignment="CENTER">
-                <Button fx:id="armyRuleButton" text="Army Rule" prefWidth="333" onAction="#armyRuleButton" styleClass="large_button"/>
-                <Button fx:id="detachmentButton" text="Detachments" prefWidth="333" onAction="#detachmentButton" styleClass="large_button"/>
-                <Button fx:id="datasheetButton" text="Datasheets" prefWidth="333" onAction="#datasheetButton" styleClass="large_button"/>
-            </HBox>
+            <TitledPane fx:id="optionsButton" text="OPTIONS" textAlignment="CENTER" styleClass="large_button" expanded="false">
+                <HBox alignment="CENTER">
+                    <Button fx:id="armyRuleButton" text="Army Rule" prefWidth="333" onAction="#armyRuleButton" styleClass="large_button"/>
+                    <Button fx:id="detachmentButton" text="Detachments" prefWidth="333" onAction="#detachmentButton" styleClass="large_button"/>
+                    <Button fx:id="datasheetButton" text="Datasheets" prefWidth="333" onAction="#datasheetButton" styleClass="large_button"/>
+                </HBox>
+            </TitledPane>
         </VBox>
-        <StackPane>
-            <BorderPane fx:id="detachmentView" visible="false">
-                <top>
-                    <VBox>
-                        <Separator/>
-                        <HBox alignment="CENTER">
-                            <Button fx:id="detachmentRules" text="Rules" styleClass="medium_button" onAction="#detachmentRulesButton"/>
-                            <Button fx:id="detachmentStratagems" text="Stratagems" styleClass="medium_button" onAction="#detachmentStratagemButton"/>
-                            <Button fx:id="detachmentEnhancements" text="Enhancements" styleClass="medium_button" onAction="#detachmentEnhancementButton"/>
-                        </HBox>
-                        <Separator/>
-                        <TilePane>
-                            <VBox>
-                                <Label text="Detachment Name:" styleClass="detachment_header"/>
-                                <ListView fx:id="detachmentList" onMouseClicked="#detachmentListSelect" styleClass="detachment_list" prefWidth="500"/>
-                            </VBox>
-                            <VBox fx:id="stratagemHeader" visible="false" managed="false">
-                                <Label text="Stratagem Name:"  styleClass="detachment_header"/>
-                                <ListView fx:id="stratagemList" onMouseClicked="#stratagemListSelect" styleClass="detachment_list" prefWidth="500"/>
-                            </VBox>
-                            <VBox fx:id="enhancementHeader" visible="false" managed="false">
-                                <Label text="Enhancement Name:" styleClass="detachment_header"/>
-                                <ListView fx:id="enhancementList" onMouseClicked="#enhancementListSelect" styleClass="detachment_list" prefWidth="500"/>
-                            </VBox>
-                            <ImageView fx:id="thrallnetImage">
-                                <Image url="@icons/CanticThrallnet256.png"/>
-                            </ImageView>
-                        </TilePane>
-                        <Separator/>
-                    </VBox>
-                </top>
-                <center>
-                    <StackPane>
-                        <StackPane fx:id="detachmentRulesView">
-                            <VBox>
-                                <Label fx:id="detachmentLabel" styleClass="detachment_header_big"/>
-                                <VBox fx:id="dynamicVBox"/>
-                            </VBox>
-                        </StackPane>
-                        <StackPane fx:id="detachmentStratagemView" visible="false">
-                            <BorderPane>
-                                <center>
-                                    <VBox>
-                                        <Label fx:id="stratagemID" styleClass="detachment_header"/>
-                                        <Label fx:id="stratagemType" styleClass="detachment_header"/>
-                                        <Label fx:id="stratagemCost" styleClass="detachment_header"/>
-                                        <Label fx:id="stratagemPhase" styleClass="detachment_header"/>
-                                        <WebView fx:id="stratagemRules" style="-fx-pref-height: 250;"/>
-                                        <TextArea fx:id="stratagemLegend" wrapText="true" editable="false"/>
-                                    </VBox>
-                                </center>
-                            </BorderPane>
-                        </StackPane>
-                        <StackPane fx:id="enhancementView" visible="false">
-                            <BorderPane>
-                                <center>
-                                    <VBox>
-                                        <Label fx:id="enhancementName" styleClass="detachment_header"/>
-                                        <Label fx:id="enhancementCost" styleClass="detachment_header"/>
-                                        <WebView fx:id="enhancementRules" style="-fx-pref-height: 250;"/>
-                                        <TextArea fx:id="enhancementLegend" wrapText="true" editable="false"/>
-                                    </VBox>
-                                </center>
-                            </BorderPane>
-                        </StackPane>
+        <StackPane maxHeight="Infinity" VBox.vgrow="ALWAYS">
+            <VBox fx:id="detachmentView" visible="false">
+                <HBox alignment="CENTER">
+                    <Button fx:id="detachmentRules" text="Rules" styleClass="medium_button" onAction="#detachmentRulesButton"/>
+                    <Button fx:id="detachmentStratagems" text="Stratagems" styleClass="medium_button" onAction="#detachmentStratagemButton"/>
+                    <Button fx:id="detachmentEnhancements" text="Enhancements" styleClass="medium_button" onAction="#detachmentEnhancementButton"/>
+                </HBox>
+                <Separator/>
+                <HBox VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                    <HBox maxWidth="666" VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                        <VBox VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                            <Label text="Detachment Name:" styleClass="detachment_header"/>
+                            <ListView fx:id="detachmentList" onMouseClicked="#detachmentListSelect" styleClass="detachment_list" prefWidth="333" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+                        </VBox>
+                        <Separator orientation="VERTICAL"/>
+                        <VBox fx:id="stratagemHeader" visible="false" managed="false" VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                            <Label text="Stratagem Name:"  styleClass="detachment_header"/>
+                            <ListView fx:id="stratagemList" onMouseClicked="#stratagemListSelect" styleClass="detachment_list" prefWidth="333" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+                        </VBox>
+                        <VBox fx:id="enhancementHeader" visible="false" managed="false" VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                            <Label text="Enhancement Name:" styleClass="detachment_header"/>
+                            <ListView fx:id="enhancementList" onMouseClicked="#enhancementListSelect" styleClass="detachment_list" prefWidth="333" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+                        </VBox>
+                    </HBox>
+                    <Separator orientation="VERTICAL"/>
+                    <StackPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                        <VBox VBox.vgrow="ALWAYS" maxHeight="Infinity" fx:id="detachmentRulesView">
+                            <Label fx:id="detachmentLabel" styleClass="detachment_header_big"/>
+                            <VBox fx:id="dynamicVBox" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+                        </VBox>
+                        <BorderPane fx:id="detachmentStratagemView" visible="false" VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                            <center>
+                                <VBox VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                                    <Label fx:id="stratagemID" styleClass="detachment_header"/>
+                                    <Label fx:id="stratagemType" styleClass="detachment_header"/>
+                                    <Label fx:id="stratagemCost" styleClass="detachment_header"/>
+                                    <Label fx:id="stratagemPhase" styleClass="detachment_header"/>
+                                    <WebView fx:id="stratagemRules" style="-fx-pref-height: 250;" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+                                    <TextArea fx:id="stratagemLegend" wrapText="true" editable="false" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                        <BorderPane fx:id="enhancementView" visible="false" VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                            <center>
+                                <VBox VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                                    <Label fx:id="enhancementName" styleClass="detachment_header"/>
+                                    <Label fx:id="enhancementCost" styleClass="detachment_header"/>
+                                    <WebView fx:id="enhancementRules" style="-fx-pref-height: 250;" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+                                    <TextArea fx:id="enhancementLegend" wrapText="true" editable="false" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+                                </VBox>
+                            </center>
+                        </BorderPane>
                     </StackPane>
-                </center>
-            </BorderPane>
+                </HBox>
+            </VBox>
             <VBox fx:id="armyView" alignment="TOP_CENTER">
                 <Separator/>
                 <Label fx:id="armyRuleName" styleClass="pane_header" textAlignment="CENTER"/>
-                <WebView fx:id="armyRuleBox" fontScale="1.25"/>
+                <HBox alignment="CENTER">
+                    <Region prefWidth="100"/>
+                    <WebView fx:id="armyRuleBox" fontScale="1.25" prefWidth="1440" prefHeight="680"/>
+                    <Region prefWidth="100"/>
+                </HBox>
             </VBox>
             <BorderPane fx:id="datasheetView" visible="false">
                 <left>
@@ -102,34 +94,39 @@
                 </left>
                 <center>
                     <ScrollPane fitToWidth="true">
-                        <VBox>
+                        <VBox alignment="CENTER">
                             <Label fx:id="datasheetName" styleClass="detachment_header"/>
+                            <Separator/>
                             <VBox fx:id="modelStats"/>
-                            <WebView fx:id="datasheetLegend" style="-fx-pref-height: 75;"/>
                             <Separator/>
                             <Label fx:id="datasheetRole" styleClass="detachment_header"/>
                             <Separator/>
-                            <Label text="Wargear:" styleClass="detachment_header"/>
-                            <VBox fx:id="wargear"/>
+                            <TitledPane text="Wargear:" styleClass="detachment_header" expanded="false" alignment="CENTER">
+                                <VBox fx:id="wargear"/>
+                            </TitledPane>
                             <Separator/>
-                            <Label text="Abilities:" styleClass="detachment_header"/>
-                            <VBox fx:id="dynamicDatasheetAbilities"/>
+                            <TitledPane text="Abilities:" styleClass="detachment_header" expanded="false" alignment="CENTER">
+                                <VBox fx:id="dynamicDatasheetAbilities"/>
+                            </TitledPane>
                             <Separator/>
-                            <Label fx:id="leaderHeader" text="Leader: " visible="false" styleClass="detachment_header"/>
-                            <HBox fx:id="leaderBox"/>
+                            <TitledPane fx:id="leaderHeader" text="Leader: " visible="false" styleClass="detachment_header" expanded="false" alignment="CENTER">
+                                <VBox fx:id="leaderBox"/>
+                            </TitledPane>
                             <Separator/>
                             <WebView fx:id="datasheetTransport" managed="false" style="-fx-pref-height: 75;"/>
                             <WebView fx:id="datasheetLeaderRule" managed="false" style="-fx-pref-height: 75;"/>
                             <Label fx:id="datasheetWoundsRange" managed="false" style="-fx-pref-height: 75;"/>
                             <WebView fx:id="datasheetWoundsRules" managed="false" style="-fx-pref-height: 75;"/>
                             <Separator/>
-                            <Label text="Unit Composition" styleClass="detachment_header"/>
-                            <VBox fx:id="composition"/>
-                            <VBox fx:id="options"/>
-                            <VBox fx:id="cost"/>
+                            <TitledPane text="Unit Composition" styleClass="detachment_header" alignment="CENTER" expanded="false">
+                                <VBox fx:id="composition" alignment="CENTER"/>
+                                <VBox fx:id="options" alignment="CENTER"/>
+                                <VBox fx:id="cost" alignment="CENTER"/>
+                            </TitledPane>
                             <Separator/>
                             <Label text="Keywords:" styleClass="detachment_header"/>
-                            <GridPane fx:id="keywordBox" />
+                            <GridPane fx:id="keywordBox" alignment="CENTER"/>
+                            <WebView fx:id="datasheetLegend" style="-fx-pref-height: 75;"/>
                         </VBox>
                     </ScrollPane>
                 </center>

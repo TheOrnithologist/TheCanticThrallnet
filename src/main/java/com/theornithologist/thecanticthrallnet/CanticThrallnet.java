@@ -45,10 +45,11 @@ public class CanticThrallnet extends Application {
             sceneRoot = "initializer.fxml";
         }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneRoot));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
+        Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
         URL url = getClass().getResource("icons/CanticThrallnet256.png");
         Image icon = new Image(String.valueOf(url));
         scene.getStylesheets().add(Objects.requireNonNull(CanticThrallnet.class.getResource("styles.css")).toExternalForm());
+        stage.setResizable(false);
         stage.getIcons().add(icon);
         scene.setFill(Color.SLATEGRAY);
         stage.setTitle("Cantic Thrallnet");
