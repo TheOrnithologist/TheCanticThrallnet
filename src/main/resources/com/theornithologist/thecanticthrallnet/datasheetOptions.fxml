@@ -8,9 +8,9 @@
 
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetOptionsController">
-    <HBox>
-        <Label fx:id="button" styleClass="datasheet_item"/>
-        <Label fx:id="optionDescription" styleClass="datasheet_item"/>
+            fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetOptionsController" alignment="CENTER">
+    <HBox alignment="CENTER">
+        <Label fx:id="button" styleClass="datasheet_item" alignment="CENTER"/>
+        <Label fx:id="optionDescription" styleClass="datasheet_item" alignment="CENTER"/>
     </HBox>
 </VBox>

@@ -4,10 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.WebView?>
 
-<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.theornithologist.thecanticthrallnet.controllers.DetachmentController">
-    <children>
-        <Label fx:id="factionAbilityName" styleClass="detachment_header"/>
-        <WebView fx:id="factionAbilityText" style="-fx-pref-height: 250;"/>
-        <TextArea fx:id="factionAbilityLegend" editable="false" wrapText="true"/>
-    </children>
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.theornithologist.thecanticthrallnet.controllers.DetachmentController" VBox.vgrow="ALWAYS" maxHeight="Infinity">
+    <Label fx:id="factionAbilityName" styleClass="detachment_header"/>
+    <WebView fx:id="factionAbilityText" style="-fx-pref-height: 250;" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+    <TextArea fx:id="factionAbilityLegend" editable="false" wrapText="true" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
 </VBox>

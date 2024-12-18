@@ -14,41 +14,45 @@
     <BorderPane>
         <top>
             <HBox fx:id="topBar" alignment="TOP_CENTER">
-                <TitledPane text="IMPERIUM" styleClass="faction_button_header" expanded="false" alignment="CENTER" >
-                    <VBox>
-                        <Button fx:id="AC" text="Adeptus Custodes" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="AdM" text="Adeptus Mechanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="AS" text="Adepta Sororitas" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-<!--                        <Button fx:id="TL" text="Adeptus Titanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>-->
-                        <Button fx:id="AoI" text="Agents of the Imperium" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="AM" text="Astra Militarum" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="GK" text="Grey Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="QI" text="Imperial Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="SM" text="Space Marines" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                <TitledPane text="IMPERIUM" styleClass="faction_button_header" expanded="false" alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <VBox HBox.hgrow="ALWAYS">
+                        <Button fx:id="AC" text="Adeptus Custodes" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="AdM" text="Adeptus Mechanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="AS" text="Adepta Sororitas" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <!--                        <Button fx:id="TL" text="Adeptus Titanicus" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>-->
+                        <Button fx:id="AoI" text="Agents of the Imperium" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="AM" text="Astra Militarum" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="GK" text="Grey Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="QI" text="Imperial Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="SM" text="Space Marines" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                     </VBox>
                 </TitledPane>
-                <TitledPane text="CHAOS" styleClass="faction_button_header" expanded="false" alignment="CENTER">
-                    <VBox>
-                        <Button fx:id="CD" text="Chaos Daemons" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="QT" text="Chaos Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="CSM" text="Chaos Space Marines" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="DG" text="Death Guard" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="TS" text="Thousand Sons" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="WE" text="World Eaters" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                <TitledPane text="CHAOS" styleClass="faction_button_header" expanded="false" alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <VBox HBox.hgrow="ALWAYS">
+                        <Button fx:id="CD" text="Chaos Daemons" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="QT" text="Chaos Knights" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="CSM" text="Chaos Space Marines" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="DG" text="Death Guard" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="TS" text="Thousand Sons" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="WE" text="World Eaters" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                     </VBox>
                 </TitledPane>
-                <TitledPane text="XENOS" styleClass="faction_button_header" expanded="false" alignment="CENTER">
-                    <VBox>
-                        <Button fx:id="AE" text="Aeldari" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="DRU" text="Drukhari" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="GC" text="Genestealer Cults" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="LoV" text="Leagues of Votann" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="NEC" text="Necrons" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="ORK" text="Orks" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="TAU" text="T'au Empire" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
-                        <Button fx:id="TYR" text="Tyranids" styleClass="large_button" alignment="CENTER" onAction="#factionButton"/>
+                <TitledPane text="XENOS" styleClass="faction_button_header" expanded="false" alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <VBox HBox.hgrow="ALWAYS">
+                        <Button fx:id="AE" text="Aeldari" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="DRU" text="Drukhari" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="GC" text="Genestealer Cults" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="LoV" text="Leagues of Votann" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="NEC" text="Necrons" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="ORK" text="Orks" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="TAU" text="T'au Empire" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="TYR" text="Tyranids" styleClass="large_button" alignment="CENTER" onAction="#factionButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                     </VBox>
                 </TitledPane>
+                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                    <Button fx:id="listButton" styleClass="faction_button_header" text="LIST BUILDER"/>
+                    <Label text="Coming Soon!" styleClass="detachment_header"/>
+                </VBox>
             </HBox>
         </top>
         <bottom>
@@ -60,6 +64,7 @@
                         styleClass="large_button"
                         BorderPane.alignment="BASELINE_CENTER"
                         onAction="#onUpdate"/>
+                <Region prefHeight="30"/>
             </VBox>
         </bottom>
     </BorderPane>

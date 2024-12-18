@@ -22,7 +22,7 @@ public class SceneController {
     public void buttonAction(ActionEvent e, String sceneString) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(CanticThrallnet.class.getResource(sceneString)));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        scene = new Scene(root, 1000, 1000);
+        scene = new Scene(root, 1600, 900);
         scene.getStylesheets().add(Objects.requireNonNull(CanticThrallnet.class.getResource("styles.css")).toExternalForm());
         stage.setScene(scene);
         stage.show();

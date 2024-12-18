@@ -10,9 +10,17 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetWargearController">
-    <TitledPane fx:id="weaponName" expanded="false" styleClass="datasheet_item">
-        <VBox>
-            <GridPane hgap="15">
+    <TitledPane fx:id="weaponName" expanded="false" styleClass="datasheet_item" alignment="CENTER">
+        <VBox alignment="CENTER">
+            <GridPane alignment="CENTER" gridLinesVisible="true">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                    <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                    <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                    <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                    <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                    <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                </columnConstraints>
                 <Label text="Range" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="datasheet_item"/>
                 <Label text="A" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="datasheet_item"/>
                 <Label text="BS/WS" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="datasheet_item"/>
@@ -26,7 +34,7 @@
                 <Label fx:id="armorPiercing" GridPane.rowIndex="1" GridPane.columnIndex="4" styleClass="datasheet_item"/>
                 <Label fx:id="damage" GridPane.rowIndex="1" GridPane.columnIndex="5" styleClass="datasheet_item"/>
             </GridPane>
-            <WebView fx:id="modifiers" style="-fx-pref-height: 75;"/>
+            <WebView fx:id="modifiers" style="-fx-pref-height: 35; -fx-max-width: 450"/>
         </VBox>
     </TitledPane>
 

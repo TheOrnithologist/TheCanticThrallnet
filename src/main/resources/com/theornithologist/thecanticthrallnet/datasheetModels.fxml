@@ -8,23 +8,36 @@
 
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetModelController">
-    <Label fx:id="modelName"/>
-    <GridPane fx:id="stats" hgap="25">
-        <Label text="M" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="detachment_header"/>
-        <Label text="T" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="detachment_header"/>
-        <Label text="Sv" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="detachment_header"/>
-        <Label text="W" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="detachment_header"/>
-        <Label text="Ld" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="detachment_header"/>
-        <Label text="OC" GridPane.columnIndex="5" GridPane.rowIndex="0" styleClass="detachment_header"/>
-        <Label text="Inv Sv" GridPane.columnIndex="6" GridPane.rowIndex="0" styleClass="detachment_header"/>
-        <Label fx:id="saveDescription" GridPane.columnIndex="7" GridPane.rowIndex="0" GridPane.rowSpan="2" styleClass="detachment_header"/>
-        <Label fx:id="movement" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="detachment_header"/>
-        <Label fx:id="toughness" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="detachment_header"/>
-        <Label fx:id="save" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="detachment_header"/>
-        <Label fx:id="wounds" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="detachment_header"/>
-        <Label fx:id="leadership" GridPane.columnIndex="4" GridPane.rowIndex="1" styleClass="detachment_header"/>
-        <Label fx:id="objectiveControl" GridPane.columnIndex="5" GridPane.rowIndex="1" styleClass="detachment_header"/>
-        <Label fx:id="invSave" GridPane.columnIndex="6" GridPane.rowIndex="1" styleClass="detachment_header"/>
-    </GridPane>
+            fx:controller="com.theornithologist.thecanticthrallnet.controllers.DatasheetModelController" alignment="CENTER">
+    <Label fx:id="modelName" alignment="CENTER" styleClass="detachment_list"/>
+    <HBox alignment="CENTER">
+        <GridPane fx:id="stats" gridLinesVisible="true">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="75" halignment="CENTER"/>
+            </columnConstraints>
+            <Label text="M" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="detachment_header"/>
+            <Label text="T" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="detachment_header"/>
+            <Label text="Sv" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="detachment_header"/>
+            <Label text="W" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="detachment_header"/>
+            <Label text="Ld" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="detachment_header"/>
+            <Label text="OC" GridPane.columnIndex="5" GridPane.rowIndex="0" styleClass="detachment_header"/>
+            <Label text="Inv Sv" GridPane.columnIndex="6" GridPane.rowIndex="0" styleClass="detachment_header"/>
+            <Label fx:id="movement" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="detachment_header"/>
+            <Label fx:id="toughness" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="detachment_header"/>
+            <Label fx:id="save" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="detachment_header"/>
+            <Label fx:id="wounds" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="detachment_header"/>
+            <Label fx:id="leadership" GridPane.columnIndex="4" GridPane.rowIndex="1" styleClass="detachment_header"/>
+            <Label fx:id="objectiveControl" GridPane.columnIndex="5" GridPane.rowIndex="1" styleClass="detachment_header"/>
+            <Label fx:id="invSave" GridPane.columnIndex="6" GridPane.rowIndex="1" styleClass="detachment_header"/>
+        </GridPane>
+        <Region prefWidth="25"/>
+        <Label fx:id="saveDescription" styleClass="datasheet_item" wrapText="true" maxWidth="600"/>
+    </HBox>
+    <Separator/>
 </VBox>
