@@ -6,12 +6,10 @@ In 40k lore it is an archaeotech relic used by the Adeptus Mechanicus as a neura
 How does it work?
 The application downloads faction and unit data from Wahapedia, and parses them into a local database. The UI queries the database to show you information about each faction.
 
-**Please note**
-Since the file downloads and database handling are done locally, it takes like five minutes to initialize the data.
-
-The initial release is for testing purposes. 
-
 Known Issues:
--Performance issues during data initialization, and loading the faction screen for factions that have a lot of units or detachments.
--Some visual issues showing unit statistics. More work needs to be done to make the UI scale properly. 
--Installing and uninstalling leave a background MSI Installer process. I'm doing more research on how to package the build without this, as it appears to be caused by my packing via jpackage and the Wix toolset. It is a benign process that takes few system resources, and can be safely terminated regardless of whether or not the application is running. 
+-Exrtaneous unprocessed HTML in some unit data
+-Blue highlighted text doesn't do anything (this is from the HTML data in the import)
+-Extraneous UI seperators in the Datasheet view that look wonky
+-Detachments which are for Boarding Action games are not marked in a way that indicates you can't use them in a regular game
+
+Thanks to Wahapedia for making this possible. 
