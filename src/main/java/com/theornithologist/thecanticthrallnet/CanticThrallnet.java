@@ -24,19 +24,18 @@ public class CanticThrallnet extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         File dir = new File(FileConstants.DataRoot());
-
+        if (!dir.exists()) {
+            boolean created = dir.mkdir();
+            if (!created) {
+                System.err.println("Directory creation failed.");
+            }
+        }
         try {
             PrintStream errorStream = new PrintStream(new FileOutputStream(FileConstants.DataRoot() + "log.txt"));
             System.setErr(errorStream);
             System.setOut(errorStream);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        if (!dir.exists()) {
-            boolean created = dir.mkdir();
-            if (!created) {
-                System.err.println("Directory creation failed.");
-            }
         }
         File firstLaunch = new File(FileConstants.DataRoot() + "launchCheck.txt");
         if (firstLaunch.exists()) {

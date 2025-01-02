@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+
+<?import javafx.scene.text.Text?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.theornithologist.thecanticthrallnet.controllers.ListBuilderController">
+    <VBox>
+        <Button fx:id="backButton" text="Back" onAction="#backButton"/>
+        <StackPane fx:id="listSelector">
+            <HBox fx:id="listLoader">
+                <Button fx:id="newButton" text="New Roster" onAction="#newRosterButton"/>
+                <TitledPane fx:id="loadButton" text="Load Roster" expanded="false">
+                    <ListView fx:id="listOfRosters" onMouseClicked="#setActiveRoster"/>
+                </TitledPane>
+            </HBox>
+            <VBox fx:id="newRosterSelector" visible="false" managed="false">
+                <Label text="Choose your faction:"/>
+                <ComboBox fx:id="faction" onAction="#factionSelect"/>
+                <Label text="Choose your detachment:"/>
+                <ComboBox fx:id="detachment"/>
+                <Label text="Choose your battle size"/>
+                <ComboBox fx:id="battlePoints"/>
+                <Label text="Name your roster:"/>
+                <TextField fx:id="rosterName"/>
+                <Label fx:id="saveError" text="Make sure all fields are filled out!" visible="false"/>
+                <Button fx:id="saveButton" text="Save" onMouseClicked="#saveButton"/>
+            </VBox>
+            <BorderPane fx:id="activeList" visible="false">
+                <top>
+                    <VBox alignment="CENTER">
+                        <Label fx:id="activeListName" alignment="CENTER"/>
+                        <Label fx:id="rosterFaction" alignment="CENTER"/>
+                        <Label fx:id="battleSize" alignment="CENTER"/>
+                    </VBox>
+                </top>
+                <left>
+                    <VBox>
+                        <Label text="Datasheets:"/>
+                        <ListView fx:id="datasheets" onMouseClicked="#datasheetListSelect"/>
+                    </VBox>
+                </left>
+                <center>
+                    <VBox>
+                        <ScrollPane fitToWidth="true">
+                            <VBox alignment="CENTER">
+                                <Label fx:id="datasheetName" styleClass="detachment_header"/>
+                                <Separator/>
+                                <VBox fx:id="modelStats"/>
+                                <Separator/>
+                                <Label fx:id="datasheetRole" styleClass="detachment_header"/>
+                                <Separator/>
+                                <TitledPane text="Wargear:" styleClass="detachment_header" expanded="false" alignment="CENTER">
+                                    <VBox fx:id="wargear"/>
+                                </TitledPane>
+                                <Separator/>
+                                <TitledPane text="Abilities:" styleClass="detachment_header" expanded="false" alignment="CENTER">
+                                    <VBox fx:id="dynamicDatasheetAbilities"/>
+                                </TitledPane>
+                                <Separator/>
+                                <TitledPane fx:id="leaderHeader" text="Leader: " visible="false" styleClass="detachment_header" expanded="false" alignment="CENTER">
+                                    <VBox fx:id="leaderBox"/>
+                                </TitledPane>
+                                <Separator/>
+                                <WebView fx:id="datasheetTransport" managed="false" style="-fx-pref-height: 75;"/>
+                                <WebView fx:id="datasheetLeaderRule" managed="false" style="-fx-pref-height: 75;"/>
+                                <Label fx:id="datasheetWoundsRange" managed="false" style="-fx-pref-height: 75;"/>
+                                <WebView fx:id="datasheetWoundsRules" managed="false" style="-fx-pref-height: 75;"/>
+                                <Separator/>
+                                <TitledPane text="Unit Composition" styleClass="detachment_header" alignment="CENTER" expanded="false">
+                                    <VBox fx:id="composition" alignment="CENTER"/>
+                                    <VBox fx:id="options" alignment="CENTER"/>
+                                    <VBox fx:id="cost" alignment="CENTER"/>
+                                </TitledPane>
+                                <Separator/>
+                                <Label text="Keywords:" styleClass="detachment_header"/>
+                                <GridPane fx:id="keywordBox" alignment="CENTER"/>
+                                <WebView fx:id="datasheetLegend" style="-fx-pref-height: 75;"/>
+                            </VBox>
+                        </ScrollPane>
+                        <Button fx:id="addDatasheet" text="Add"/>
+                        <Button fx:id="rosterSave" text="Save Roster"/>
+                    </VBox>
+                </center>
+                <right>
+                    <VBox>
+                        <Label text="Roster Contents:"/>
+                        <ListView fx:id="datasheetsInRoster"/>
+                        <Button fx:id="battleViewButton" text="Battle View"/>
+                    </VBox>
+                </right>
+            </BorderPane>
+        </StackPane>
+    </VBox>
+    <BorderPane fx:id="spinner" style="-fx-background-color: white" visible="false">
+        <center>
+            <ProgressIndicator/>
+        </center>
+    </BorderPane>
+</StackPane>
+

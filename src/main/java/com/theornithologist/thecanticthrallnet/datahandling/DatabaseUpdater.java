@@ -214,6 +214,7 @@ public class DatabaseUpdater {
                 dataString.append("?,");
             }
         }
+        System.out.println(dataString);
         return dataString.toString();
     }
 }

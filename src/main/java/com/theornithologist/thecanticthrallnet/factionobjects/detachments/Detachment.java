@@ -1,8 +1,6 @@
 package com.theornithologist.thecanticthrallnet.factionobjects.detachments;
 
-import com.theornithologist.thecanticthrallnet.datahandling.FactionIDConstants;
 import com.theornithologist.thecanticthrallnet.datahandling.FactionQuery;
-import com.theornithologist.thecanticthrallnet.factionobjects.ActiveFaction;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,9 +61,7 @@ public class Detachment {
     }
 
     public void setAbilities() throws SQLException {
-        ActiveFaction activeFaction = ActiveFaction.getInstance();
-        String factionValue = FactionIDConstants.fromValue(activeFaction.getFactionName()).toString();
-        ResultSet rs = factionQuery.getDetachmentAbilities(factionValue, detachmentName);
+        ResultSet rs = factionQuery.getDetachmentAbilities(detachmentName);
         List<DetachmentAbility> detachmentAbilityList = new ArrayList<>();
         while(rs.next()) {
             detachmentAbilityList.add(new DetachmentAbility(rs.getString("name"),
