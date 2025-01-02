@@ -56,7 +56,7 @@ public class InitializerController {
                         Parent root = FXMLLoader.load(Objects.requireNonNull(CanticThrallnet.class.getResource("home.fxml")));
                         Stage stage = (Stage) (progressBar.getScene().getWindow());
                         Scene scene;
-                        scene = new Scene(root, 1000, 1000);
+                        scene = new Scene(root, 1600, 900);
                         scene.getStylesheets().add(Objects.requireNonNull(CanticThrallnet.class.getResource("styles.css")).toExternalForm());
                         stage.setScene(scene);
                         stage.show();

@@ -44,8 +44,8 @@ public class FactionQuery {
         return null;
     }
 
-    public ResultSet getDetachmentAbilities(String faction, String detachmentName) {
-        String sql = "SELECT name, legend, description FROM Detachment_abilities where faction_id ='" + faction + "' AND detachment ='" + detachmentName +"'";
+    public ResultSet getDetachmentAbilities(String detachmentName) {
+        String sql = "SELECT name, legend, description FROM Detachment_abilities where detachment ='" + detachmentName +"'";
         try {
             var conn = DriverManager.getConnection(URL);
             var stmt = conn.prepareStatement(sql);

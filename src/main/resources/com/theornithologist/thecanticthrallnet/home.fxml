@@ -50,7 +50,7 @@
                     </VBox>
                 </TitledPane>
                 <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                    <Button fx:id="listButton" styleClass="faction_button_header" text="LIST BUILDER"/>
+                    <Button fx:id="listButton" styleClass="faction_button_header" text="LIST BUILDER" onAction="#selectListButton"/>
                     <Label text="Coming Soon!" styleClass="detachment_header"/>
                 </VBox>
             </HBox>
